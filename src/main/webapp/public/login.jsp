@@ -1,7 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, java.text.*" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -10,13 +7,11 @@
 
 <title>Cash Desk</title>
 
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
 <!-- MAIN CSS -->
-
-<style>
-        <%@include file="/css/tooplate-style.css" %>
-        <%@include file="/css/bootstrap.min.css" %>
-</style>
+<link rel="stylesheet" href="css/tooplate-style.css">
+<link rel="stylesheet" href="css/login.css">
 
 </head>
 <body>
@@ -26,13 +21,40 @@
      <div class="container">
           <div class="row">
 
-               <div class="col-md-offset-5 col-md-7 col-sm-12">
-                    <div class="home-thumb">
-                         <h1 class="wow fadeInUp" data-wow-delay="0.4s">Welcome to Cash Desk</h1>
-                         <p class="wow fadeInUp white-color" data-wow-delay="0.6s">Work! Have fun with us!</p>
-                         <a href="#service" class="wow fadeInUp smoothScroll btn btn-default section-btn" data-wow-delay="1s">Start Work</a>
-                    </div>
+            
+          <div class="container-login100">
+               <div class="wrap-login100">
+                    <form class="login100-form validate-form">
+                         <span class="login100-form-title p-b-34">
+                              Account Login
+                         </span>
+                         
+                         <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                              <input id="first-name" class="input100" type="text" name="username" placeholder="User name">
+                              <span class="focus-input100"></span>
+                         </div>
+                         <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+                              <input class="input100" type="password" name="pass" placeholder="Password">
+                              <span class="focus-input100"></span>
+                         </div>
+                         
+                         <div class="container-login100-form-btn">
+                              <button class="login100-form-btn">
+                                   Sign in
+                              </button>
+                         </div>
+
+                         <div class="w-full text-center">
+                              <a href="#" class="txt3">
+                                   Registration
+                              </a>
+                         </div>
+                    </form>
+
+                    <div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
                </div>
+          </div>
+   
 
           </div>
      </div>
@@ -49,7 +71,7 @@
                     <h2>Choose your type of profession.</h2>
                </div>
                
-               <a href="/secured/cashier.jsp">
+               <a href="#">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                          <div class="service-thumb">
                               <h4>The cashier</h4>
@@ -62,7 +84,7 @@
                     </div>
               </a>
 
-              <a href="/secured/seniorcashier.jsp">
+              <a href="#">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
                          <div class="service-thumb">
                               <h4>Senior Cashier</h4>
@@ -74,7 +96,7 @@
                          </div>
                     </div>
                </a>
-                <a href="/secured/supervisor.jsp">
+                <a href="#"> 
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.8s">
                          <div class="service-thumb">
                               <h4>Supervisor</h4>
@@ -102,6 +124,9 @@
      </div>
 </footer>
 
+<!-- SCRIPTS -->
+<script src="js/jquery.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 </html>
