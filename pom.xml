@@ -22,6 +22,17 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>2.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.17</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.glassfish.main.extras</groupId>
       <artifactId>javaee</artifactId>
       <version>4.0-b33</version>
@@ -58,6 +69,17 @@
       <version>1.2</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.moskito</groupId>
+      <artifactId>moskito-central-core</artifactId>
+      <version>1.1.4</version>
+    </dependency>
+
   </dependencies>
 
   <build>
