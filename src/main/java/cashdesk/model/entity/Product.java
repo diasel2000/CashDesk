@@ -1,4 +1,4 @@
-package cashdesk.model;
+package cashdesk.model.entity;
 
 import java.math.BigDecimal;
 import java.util.Objects;

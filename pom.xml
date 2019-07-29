@@ -10,8 +10,15 @@
   <url>http://www.example.com</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <commons-dbcp2.version>2.4.0</commons-dbcp2.version>
+    <mysql.version>8.0.15</mysql.version>
+    <log4j.version>1.2.17</log4j.version>
+    <mockito.version>1.10.19</mockito.version>
+    <jstl.version>1.2</jstl.version>
+    <jsp.api.version>2.0</jsp.api.version>
+    <servlet.api.version>4.0.1</servlet.api.version>
   </properties>
   <dependencies>
 
@@ -58,6 +65,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>taglibs</groupId>
       <artifactId>standard</artifactId>
       <version>1.1.2</version>
@@ -67,7 +80,6 @@
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>

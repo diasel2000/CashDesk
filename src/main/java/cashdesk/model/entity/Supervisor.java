@@ -1,13 +1,13 @@
-package cashdesk.model;
+package cashdesk.model.entity;
 
 import java.util.Objects;
 
-public class Caisher {
+public class Supervisor {
     private int id;
     private String name;
     private String lastName;
 
-    public Caisher(int id, String name, String lastName) {
+    public Supervisor(int id, String name, String lastName) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -41,10 +41,10 @@ public class Caisher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Caisher caisher = (Caisher) o;
-        return id == caisher.id &&
-                Objects.equals(name, caisher.name) &&
-                Objects.equals(lastName, caisher.lastName);
+        Supervisor that = (Supervisor) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(lastName, that.lastName);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Caisher {
 
     @Override
     public String toString() {
-        return "Caisher{" +
+        return "Supervisor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
