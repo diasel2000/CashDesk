@@ -1,30 +1,27 @@
 package cashdesk.controller.servlets;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/logout")
+
 public class LogoutServlet extends HttpServlet {
-    public LogoutServlet() {
-        super();
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getSession().invalidate();
+        HttpSession session = request.getSession(false); //Fetch session object
 
-        // Redrect to Home Page.
-        response.sendRedirect(request.getContextPath() + "/");
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        this.doGet(request, response);
+        if(session!=null) //If session is not null
+        {
+            session.invalidate(); //removes all session attributes bound to the session
+            request.setAttribute("errMessage", "You have logged out successfully");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/login.jsp");
+            requestDispatcher.forward(request, response);
+            System.out.println("Logged out");
+        }
     }
 }
