@@ -15,22 +15,22 @@ public class JDBCDaoFactory extends DaoFactory {
 
     @Override
     public UsersDAO createUserDao() {
-        return null;
+        return new JDBCUserDAO(getConnection());
     }
 
     @Override
     public ProductDAO createProductDao() {
-        return null;
+        return new JDBCProductDAO(getConnection());
     }
 
     @Override
     public CheckDAO createCheckDao() {
-        return null;
+        return new JDBCCheckDAO(getConnection());
     }
 
     @Override
     public ReportDAO createReportDao() {
-        return null;
+        return new JDBCReportDAO(getConnection());
     }
 
     @Override
