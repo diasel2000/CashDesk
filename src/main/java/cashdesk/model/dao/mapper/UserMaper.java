@@ -14,7 +14,7 @@ public class UserMaper implements Mapper<Users> {
         users.setName(resultSet.getString("name"));
         users.setLastName(resultSet.getString("lastName"));
         users.setPassword(resultSet.getString("password"));
-        users.setRole(UserRole.UNKNOWN);
+        users.setRole(resultSet.getString("role"));
         return users;
     }
 }

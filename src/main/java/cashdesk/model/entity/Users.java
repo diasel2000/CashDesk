@@ -8,9 +8,9 @@ public class Users {
     private String password;
     private String name;
     private String lastName;
-    private UserRole role;
+    private String role;
 
-    public Users(Integer id, String login, String password, String name, String lastName, UserRole role) {
+    public Users(Integer id, String login, String password, String name, String lastName, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -63,11 +63,11 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public UserRole getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
