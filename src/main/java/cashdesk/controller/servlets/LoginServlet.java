@@ -1,19 +1,14 @@
 package cashdesk.controller.servlets;
 
-import cashdesk.dao.impl.JDBCDaoFactory;
-import cashdesk.dao.impl.JDBCUserDAO;
-import cashdesk.dao.mapper.UserMaper;
+import cashdesk.model.dao.interfaces.LoginDAO;
 import cashdesk.model.entity.Users;
-import cashdesk.service.UsersService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
 
 public class LoginServlet extends HttpServlet {
     public LoginServlet() {
@@ -29,49 +24,49 @@ public class LoginServlet extends HttpServlet {
         loginBean.setLogin(login);
         loginBean.setPassword(password);
 
-        UsersService loginDao = new UsersService();
+        LoginDAO loginDao = new LoginDAO();
 
         try
         {
-            String userValidate = loginDao.
+            String userValidate = loginDao.authenticateUser(loginBean);
 
-            if(userValidate.equals("Admin_Role"))
+            if(userValidate.equals("Caisher_Role"))
             {
-                System.out.println("Admin's Home");
+                System.out.println("Caisher's Home");
 
                 HttpSession session = request.getSession(); //Creating a session
-                session.setAttribute("Admin", login); //setting session attribute
+                session.setAttribute("Caisher", login); //setting session attribute
                 request.setAttribute("userName", login);
 
-                request.getRequestDispatcher("/JSP/Admin.jsp").forward(request, response);
+                request.getRequestDispatcher("/secured/caisher/caisher.jsp").forward(request, response);
             }
-            else if(userValidate.equals("Editor_Role"))
+            else if(userValidate.equals("SeniorCaisher_Role"))
             {
-                System.out.println("Editor's Home");
+                System.out.println("SeniorCaisher's Home");
 
                 HttpSession session = request.getSession();
-                session.setAttribute("Editor", login);
+                session.setAttribute("SeniorCaisher", login);
                 request.setAttribute("userName", login);
 
-                request.getRequestDispatcher("/JSP/Editor.jsp").forward(request, response);
+                request.getRequestDispatcher("/secured/seniorcaisher/seniorcaisher.jsp").forward(request, response);
             }
-            else if(userValidate.equals("User_Role"))
+            else if(userValidate.equals("Supervisor_Role"))
             {
-                System.out.println("User's Home");
+                System.out.println("Supervisor's Home");
 
                 HttpSession session = request.getSession();
                 session.setMaxInactiveInterval(10*60);
-                session.setAttribute("User", login);
+                session.setAttribute("Supervisor", login);
                 request.setAttribute("userName", login);
 
-                request.getRequestDispatcher("/JSP/User.jsp").forward(request, response);
+                request.getRequestDispatcher("/secured/supervisor/supervisor.jsp").forward(request, response);
             }
             else
             {
                 System.out.println("Error message = "+userValidate);
                 request.setAttribute("errMessage", userValidate);
 
-                request.getRequestDispatcher("/JSP/Login.jsp").forward(request, response);
+                request.getRequestDispatcher("/public/login.jsp").forward(request, response);
             }
         }
         catch (IOException e1)

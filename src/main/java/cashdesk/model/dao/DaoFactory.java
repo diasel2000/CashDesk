@@ -1,7 +1,7 @@
-package cashdesk.dao;
+package cashdesk.model.dao;
 
-import cashdesk.dao.impl.JDBCDaoFactory;
-import cashdesk.dao.interfaces.*;
+import cashdesk.model.dao.impl.JDBCDaoFactory;
+import cashdesk.model.dao.interfaces.*;
 
 public abstract class DaoFactory {
     private static DaoFactory daoFactory;

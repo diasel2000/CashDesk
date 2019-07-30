@@ -1,6 +1,6 @@
-package cashdesk.dao.interfaces;
+package cashdesk.model.dao.interfaces;
 
-import cashdesk.dao.GenericDAO;
+import cashdesk.model.dao.GenericDAO;
 import cashdesk.model.entity.Check;
 
 import java.util.List;

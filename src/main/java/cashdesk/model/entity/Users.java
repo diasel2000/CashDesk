@@ -1,7 +1,5 @@
 package cashdesk.model.entity;
 
-import cashdesk.model.enums.UserRole;
-
 import java.util.Objects;
 
 public class Users {

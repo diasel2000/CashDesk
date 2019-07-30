@@ -1,6 +1,6 @@
-package cashdesk.dao.impl;
+package cashdesk.model.dao.impl;
 
-import cashdesk.dao.interfaces.ReportDAO;
+import cashdesk.model.dao.interfaces.ReportDAO;
 import cashdesk.model.entity.Report;
 
 import java.sql.Connection;

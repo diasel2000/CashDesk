@@ -1,7 +1,6 @@
-package cashdesk.dao.mapper;
+package cashdesk.model.dao.mapper;
 
 import cashdesk.model.entity.Users;
-import cashdesk.model.enums.UserRole;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

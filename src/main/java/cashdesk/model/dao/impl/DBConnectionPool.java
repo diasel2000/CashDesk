@@ -1,4 +1,4 @@
-package cashdesk.dao.impl;
+package cashdesk.model.dao.impl;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.Logger;

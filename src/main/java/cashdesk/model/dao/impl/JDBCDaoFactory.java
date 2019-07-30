@@ -1,13 +1,13 @@
-package cashdesk.dao.impl;
+package cashdesk.model.dao.impl;
 
-import cashdesk.dao.DaoFactory;
-import cashdesk.dao.interfaces.*;
+import cashdesk.model.dao.DaoFactory;
+import cashdesk.model.dao.interfaces.*;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static cashdesk.dao.impl.DBConnectionPool.dataSource;
+import static cashdesk.model.dao.impl.DBConnectionPool.dataSource;
 
 
 public class JDBCDaoFactory extends DaoFactory {

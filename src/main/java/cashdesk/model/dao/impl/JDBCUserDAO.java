@@ -1,37 +1,36 @@
-package cashdesk.dao.impl;
+package cashdesk.model.dao.impl;
 
-import cashdesk.dao.interfaces.CheckDAO;
-import cashdesk.model.entity.Check;
+import cashdesk.model.dao.interfaces.UsersDAO;
+import cashdesk.model.entity.Users;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JDBCCheckDAO implements CheckDAO {
+public class JDBCUserDAO implements UsersDAO {
     private Connection connection;
 
-
-    public JDBCCheckDAO(Connection connection) {
+    public JDBCUserDAO(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public void create(Check entity) throws SQLException {
+    public void create(Users entity) throws SQLException {
 
     }
 
     @Override
-    public Check findById(int id) {
+    public Users findById(int id) {
         return null;
     }
 
     @Override
-    public List<Check> findAll() {
+    public List<Users> findAll() {
         return null;
     }
 
     @Override
-    public void update(Check check) {
+    public void update(Users users) {
 
     }
 
@@ -45,7 +44,7 @@ public class JDBCCheckDAO implements CheckDAO {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -53,6 +52,4 @@ public class JDBCCheckDAO implements CheckDAO {
     public int getCount() throws SQLException {
         return 0;
     }
-
-
 }

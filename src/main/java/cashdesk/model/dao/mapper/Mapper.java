@@ -1,4 +1,4 @@
-package cashdesk.dao.mapper;
+package cashdesk.model.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

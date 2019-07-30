@@ -1,4 +1,4 @@
-package cashdesk.dao.mapper;
+package cashdesk.model.dao.mapper;
 
 import cashdesk.model.entity.Check;
 
