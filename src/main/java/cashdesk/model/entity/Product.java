@@ -4,22 +4,36 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product {
-    private int id;
+    private Integer id;
+    private int code;
     private String productName;
     private BigDecimal price;
 
-    public Product(int id, String productName, BigDecimal price) {
+    public Product(Integer id, int code, String productName, BigDecimal price) {
         this.id = id;
+        this.code = code;
         this.productName = productName;
         this.price = price;
     }
 
-    public int getId() {
+    public Product() {
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getProductName() {
@@ -43,20 +57,22 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return code == product.code &&
+                Objects.equals(id, product.id) &&
                 Objects.equals(productName, product.productName) &&
                 Objects.equals(price, product.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, price);
+        return Objects.hash(id, code, productName, price);
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", code=" + code +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 '}';

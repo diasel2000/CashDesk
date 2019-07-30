@@ -4,13 +4,17 @@ import java.util.Objects;
 
 public class Report {
     private int id;
-    private String type;
+    private Character type;
     private String content;
 
-    public Report(int id, String type, String content) {
+    public Report(int id, Character type, String content) {
         this.id = id;
         this.type = type;
         this.content = content;
+    }
+
+    public Report() {
+
     }
 
     public int getId() {
@@ -21,11 +25,11 @@ public class Report {
         this.id = id;
     }
 
-    public String getType() {
+    public Character getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Character type) {
         this.type = type;
     }
 
