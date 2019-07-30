@@ -15,11 +15,14 @@
 
 <title>Cash Desk</title>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
+
 
 <!-- MAIN CSS -->
-<link rel="stylesheet" href="css/tooplate-style.css">
-<link rel="stylesheet" href="css/login.css">
+<style>
+        <%@include file="/css/tooplate-style.css" %>
+        <%@include file="/css/bootstrap.min.css" %>
+        <%@include file="/css/login.css" %>
+</style>
 
 </head>
 <body>
@@ -61,7 +64,7 @@
                          </div>
 
                          <div class="w-full text-center">
-                              <a href="#" class="txt3">
+                              <a href="/public/login.jsp" class="txt3">
                                    Logining...
                               </a>
                          </div>

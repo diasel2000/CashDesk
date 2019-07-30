@@ -55,7 +55,7 @@
                     <h2>Choose your type of profession.</h2>
                </div>
                
-               <a href="/secured/cashier.jsp">
+               <a href="/secured/caisher/cashier.jsp">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                          <div class="service-thumb">
                               <h4>The cashier</h4>
@@ -68,7 +68,7 @@
                     </div>
               </a>
 
-              <a href="/secured/seniorcashier.jsp">
+              <a href="/secured/seniorcaisher/seniorcashier.jsp">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
                          <div class="service-thumb">
                               <h4>Senior Cashier</h4>
@@ -80,7 +80,7 @@
                          </div>
                     </div>
                </a>
-                <a href="/secured/supervisor.jsp">
+                <a href="/secured/supervisor/supervisor.jsp">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.8s">
                          <div class="service-thumb">
                               <h4>Supervisor</h4>
@@ -99,7 +99,7 @@
 <footer>
     <div class="container">
         <div class="row">
-
+            <a href="/public/login.jsp">Registration</a>
                <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.8s">
                     <p class="white-color">Anatolii Huzov &copy; 2019 Cash Desk 
                     | Design: Stolen on the internet</p>
