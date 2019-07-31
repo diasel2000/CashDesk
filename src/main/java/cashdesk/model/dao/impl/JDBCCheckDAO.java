@@ -28,7 +28,7 @@ public class JDBCCheckDAO implements CheckDAO {
 
         connection.setAutoCommit(false);
         PreparedStatement stmt = connection.prepareStatement(
-                "insert into check (check_id, total_price, cashier_id, shift_id, create_time)" +
+                "insert into check (id_check, total_price, cashier_id, shift_id, create_time)" +
                         " values (?, ?, ?, ?, ?)");
         stmt.setInt(1, id);
         stmt.setBigDecimal(2, totalPrice);
