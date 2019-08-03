@@ -29,11 +29,6 @@ public class JDBCDaoFactory extends DaoFactory {
     }
 
     @Override
-    public ReportDAO createReportDao() {
-        return new JDBCReportDAO(getConnection());
-    }
-
-    @Override
     public CaisherDAO createCaisherDao() {
         return null;
     }

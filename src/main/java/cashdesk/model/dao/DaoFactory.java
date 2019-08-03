@@ -12,8 +12,6 @@ public abstract class DaoFactory {
 
     public abstract CheckDAO createCheckDao();
 
-    public abstract ReportDAO createReportDao();
-
     public abstract CaisherDAO createCaisherDao();
 
     public abstract SeniorCaisherDAO createSeniorCaisherDao();

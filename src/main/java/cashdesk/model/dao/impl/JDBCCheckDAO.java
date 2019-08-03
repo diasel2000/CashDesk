@@ -1,15 +1,17 @@
 package cashdesk.model.dao.impl;
 
 import cashdesk.model.dao.interfaces.CheckDAO;
+import cashdesk.model.dao.mapper.CheckMaper;
+import cashdesk.model.dao.mapper.ProductMaper;
 import cashdesk.model.entity.Check;
 import cashdesk.model.entity.Product;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JDBCCheckDAO implements CheckDAO {
     private Connection connection;
@@ -37,10 +39,9 @@ public class JDBCCheckDAO implements CheckDAO {
         stmt.addBatch();
         stmt.executeBatch();
         stmt = connection.prepareStatement(
-                "insert into product_in_check (code, name, is_sold_by_weight, number_sold," +
-                        " weight_sold, price, check_id)" +
-                        " values (?, ?, ?, ?, ?, ?, ?)");
-        for(Product product : check.getPoductId()){
+                "insert into product (id_product, product_name, price, code," +
+                        " values (?, ?, ?, ?)");
+        for(Product product : check.getProducts()){
             stmt.setInt(1, product.getId());
             stmt.setString(2, product.getProductName());
             stmt.setBigDecimal(3, product.getPrice());
@@ -55,13 +56,42 @@ public class JDBCCheckDAO implements CheckDAO {
     }
 
     @Override
-    public Check findById(int id) {
-        return null;
+    public Check findById(int id) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "select * from check" +
+                        " where check.id_check = (?) ");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        CheckMaper checkMapper = new CheckMaper();
+
+        rs.next();
+        Check check = checkMapper.getEntity(rs);
+
+        List<Product> products = new ArrayList<>();
+        ProductMaper productMapper = new ProductMaper();
+        do {
+            Product product = productMapper.getEntity(rs);
+            products.add(product);
+        }
+        while(rs.next());
+        check.setProducts(products);
+
+        stmt.close();
+        connection.close();
+        return check;
     }
 
     @Override
-    public List<Check> findAll() {
-        return null;
+    public List<Check> findAll() throws SQLException {
+        Map<Integer, Check> checks = new HashMap<>();
+        final String query = "select id_check, product_quantity, price_sum from check";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(query);
+
+        CheckMaper checkMapper = new CheckMaper();
+
+
+        return new ArrayList<>(checks.values());
     }
 
     @Override
@@ -71,7 +101,13 @@ public class JDBCCheckDAO implements CheckDAO {
 
     @Override
     public void delete(int id) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "delete from check where id_check = (?)");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
 
+        stmt.close();
+        connection.close();
     }
 
     @Override
