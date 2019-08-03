@@ -14,4 +14,6 @@ public interface UsersDAO extends GenericDAO<Users> {
 
     void update(Users users) throws SQLException;
 
+    void register(String login, String pass, String role) throws SQLException;
+
 }
