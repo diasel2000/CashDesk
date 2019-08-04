@@ -7,7 +7,7 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
 
-<html lang="en">
+<html lang="${param.lang}">
 <head>
 
 <meta charset="UTF-8">

@@ -7,7 +7,7 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
 
-<html lang="en">
+<html lang="${param.lang}">
 <head>
 
 <meta charset="UTF-8">
@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="/css/login.css">
 
 </head>
+<%java.text.DateFormat df = new java.text.SimpleDateFormat("dd/MM/yyyy"); %>
 <body>
 
 <!-- HOME SECTION -->
@@ -49,31 +50,51 @@
 
                <div class="" data-wow-delay="0.2s">
                     <!-- SECTION TITLE -->
-                    <h2>Add product in check</h2>
+                    <h2>Check operations</h2>
                </div>
                <form class="login100-form validate-form">
                     <table>
                          <tr>
-                           <th>Code</th>
-                           <th>Product</th>
-                           <th>Count</th>
-                           <th>Price</th>
+                           <th>Check_ID</th>
+                           <th>Product Quantity</th>
+                           <th>Price Sum</th>
                          </tr>
                          <tr>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product code"></td>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product name"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="count"></td>
+                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="check id"></td>
+                           <td><input id="first-name" class="input100" type="number" name="username" placeholder=""></td>
                            <td><input id="first-name" class="input100" type="number" name="username" placeholder="price"></td>
-                         </tr>
-                         <tr>
-                           <th><div class="container-login100-form-btn">
-                              <button class="login100-form-btn">
-                                   Add prouct
-                              </button>
-                         </div></th>
+                           <td><div class="container-login100-form-btn"><button class="login100-form-btn">Delete Check</button></div></td>
                          </tr>
                     </table>
                </form>
+               <table>
+                <h2>X report</h2>
+                    <tr>
+                        <th>Data</th>
+                        <th>Content</th>
+                    </tr>
+                    <tr>
+                        <td><%= df.format(new java.util.Date()) %></td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                    </tr>
+                </table>
+                 <table>
+                    <h2>Z report</h2>
+                    <tr>
+                        <th>Data</th>
+                        <th>Content</th>
+                    </tr>
+                    <tr>
+                        <td><%= df.format(new java.util.Date()) %></td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                        </tr>
+                 </table>
           </div>
      </div>
 </section>

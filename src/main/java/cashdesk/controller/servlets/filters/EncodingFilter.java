@@ -1,4 +1,4 @@
-package cashdesk.filters;
+package cashdesk.controller.servlets.filters;
 
 import org.apache.log4j.Logger;
 

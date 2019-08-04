@@ -19,6 +19,10 @@ public class Check {
         this.productId = productId;
     }
 
+    public Check() {
+
+    }
+
     public int getId() {
         return id;
     }

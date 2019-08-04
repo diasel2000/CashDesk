@@ -50,7 +50,7 @@ public class JDBCUserDAO implements UsersDAO {
                     .getEntity(rs);
             userMapper.getEntity(rs);
         }
-        return new ArrayList<Users>((Collection<? extends Users>) users.values());
+        return new ArrayList<Users>();
     }
 
     @Override
