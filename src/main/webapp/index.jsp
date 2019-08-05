@@ -103,7 +103,7 @@
                     | Design: Stolen on the internet</p>
                   <nav>
                   <ul class="topmenu">
-                                <li><a href=""><fmt:message key="${locale}" /></a>
+                                <li><a href=""><fmt:message key="index.language" /></a>
                               <ul class="submenu">
                                   <li><a href="?locale=en"><fmt:message key="en" /></a></li>
                                   <li><a href="?locale=ru"><fmt:message key="ru" /></a></li>
