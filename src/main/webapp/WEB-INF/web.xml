@@ -18,7 +18,7 @@
 
   <filter>
     <filter-name>EncodingFilter</filter-name>
-    <filter-class>cashdesk.controller.servlets.filters.EncodingFilter</filter-class>
+    <filter-class>cashdesk.controller.filters.EncodingFilter</filter-class>
     <init-param>
       <param-name>encoding_type</param-name>
       <param-value>UTF-8</param-value>
@@ -33,7 +33,7 @@
 
   <filter>
     <filter-name>LocalizationFilter</filter-name>
-    <filter-class>cashdesk.controller.servlets.filters.LocalizationFilter</filter-class>
+    <filter-class>cashdesk.controller.filters.LocalizationFilter</filter-class>
     <init-param>
       <param-name>bundle</param-name>
       <param-value>locale</param-value>

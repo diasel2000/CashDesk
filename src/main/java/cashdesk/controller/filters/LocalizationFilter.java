@@ -1,4 +1,4 @@
-package cashdesk.controller.servlets.filters;
+package cashdesk.controller.filters;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
