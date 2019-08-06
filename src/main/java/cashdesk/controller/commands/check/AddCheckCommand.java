@@ -71,7 +71,6 @@ public class AddCheckCommand implements Command {
         check.setTotalPrice(totalPrice);
         check.setCashier((Users) ((HttpServletRequest) request).getSession().getAttribute("user"));
         Shift shift = new Shift();
-        //TODO shift handling
         shift.setId(1);
         check.setShift(shift);
         check.setProducts(products);
