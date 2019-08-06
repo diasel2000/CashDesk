@@ -21,7 +21,7 @@ public class AddUsersCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String role = request.getParameter("role");
-        String sid = request.getParameter("id");
+        String sid = request.getParameter("id_user");
         int id = Integer.parseInt(sid);
         Users user = new Users();
         user.setId(id);

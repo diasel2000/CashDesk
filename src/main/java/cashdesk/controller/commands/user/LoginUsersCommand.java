@@ -2,7 +2,8 @@ package cashdesk.controller.commands.user;
 
 import cashdesk.controller.commands.Command;
 import cashdesk.model.srvice.UserService;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
+import cashdesk.utils.Regex;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -37,7 +38,7 @@ public class LoginUsersCommand implements Command {
 
             return;
         }
-        if (!Regex.isEmailCorrect(login)) {
+        if (!Regex.isLoginCorrect(login)) {
             request.setAttribute("login_error_message", "Invalid login");
             return;
         }

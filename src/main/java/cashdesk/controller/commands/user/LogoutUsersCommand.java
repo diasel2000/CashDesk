@@ -13,7 +13,7 @@ public class LogoutUsersCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(LoginUsersCommand.class);
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UsersCommand.setUsers(request,null);
+        UsersCommand.setUser(request,null);
         LOGGER.info("logged out");
     }
 }
