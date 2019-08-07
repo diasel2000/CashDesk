@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -26,18 +27,18 @@ public class AddCheckCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Check check = new Check();
-        long totalPrice = 0;
+        BigDecimal totalPrice = BigDecimal.valueOf(0);
         int i = 1;
 
         List<Product> products = new ArrayList<Product>();
         int code;
         String name;
-        boolean isSoldByWeight;
-        long price;
+
+        BigDecimal price;
         int managerId;
         Users manager;
         int number;
-        long weight;
+
 
 
         while (request.getParameter("code" + i) != null) {
@@ -46,36 +47,35 @@ public class AddCheckCommand implements Command {
             managerId = Integer.parseInt(request.getParameter("manager" + i));
             manager = new Users();
             manager.setId(managerId);
-            price = (long)Double.parseDouble(request.getParameter("priceToAdd" + i));
-            totalPrice += price;
-            isSoldByWeight = Boolean.parseBoolean(request.getParameter("soldByWeight" + i));
+            price = BigDecimal.valueOf(Long.parseLong(request.getParameter("priceToAdd" + i)));
 
-            Product product = new Product.Builder(code)
-                    .productName(name)
-                    .isSoldByWeight(isSoldByWeight)
-                    .price(price)
-                    .byManager(manager)
-                    .build();
-            if (isSoldByWeight) {
-                weight = Long.parseLong(request.getParameter("weightToAdd" + i));
-                product.setWeight(weight);
-            } else {
-                number = Integer.parseInt(request.getParameter("numberToAdd" + i));
-                product.setNumber(number);
-            }
-            product.setCheck(check);
-            products.add(product);
-            i++;
+
+
+//            Product product = new Product.Builder(code)
+//                    .productName(name)
+//                    .price(price)
+//                    .byManager(manager)
+//                    .build();
+//            if (isSoldByWeight) {
+//                weight = Long.parseLong(request.getParameter("weightToAdd" + i));
+//                product.setWeight(weight);
+//            } else {
+//                number = Integer.parseInt(request.getParameter("numberToAdd" + i));
+//                product.setNumber(number);
+//            }
+//            product.setCheck(check);
+//            products.add(product);
+//            i++;
         }
 
-        check.setTotalPrice(totalPrice);
-        check.setCashier((Users) ((HttpServletRequest) request).getSession().getAttribute("user"));
-        Shift shift = new Shift();
-        shift.setId(1);
-        check.setShift(shift);
+        check.setPriceSum(totalPrice);
+//        check.setCashierId((Users) ((HttpServletRequest) request).getSession().getAttribute("user"));
+//        Shift shift = new Shift();
+//        shift.setId(1);
+//        check.setShift(shift);
         check.setProducts(products);
         Timestamp time = new Timestamp(new Date().getTime());
-        check.setCreateTime(time);
+//        check.setCreateTime(time);
         check.setId(check.hashCode());
 
         try {

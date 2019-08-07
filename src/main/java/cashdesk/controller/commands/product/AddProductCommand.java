@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 public class AddProductCommand implements Command {
@@ -42,40 +43,40 @@ public class AddProductCommand implements Command {
             return;
         }
         boolean isSoldByWeight = !(request.getParameter("soldByWeight") == null);
-        long price = Long.parseLong(priceStr);
+        BigDecimal price = BigDecimal.valueOf(Long.parseLong(priceStr));
         Users user = (Users) ((HttpServletRequest) request).getSession().getAttribute("user");
-        Product product = new Product.Builder(code)
-                .productName(name)
-                .isSoldByWeight(isSoldByWeight)
-                .price(price)
-                .byManager(user)
-                .build();
-        if (isSoldByWeight) {
-            String weightStr = request.getParameter("weight");
-            if (!Regex.isNumberCorrect(weightStr)) {
-                request.setAttribute("weight_error_message", "Invalid price");
-                showError(request, response);
-                return;
-            }
-            long weight = Long.parseLong(weightStr);
-            product.setWeight(weight);
-        } else {
-            String numberStr = request.getParameter("number");
-            if (!Regex.isNumberCorrect(numberStr)) {
-                request.setAttribute("number_error_message", "Invalid number");
-                showError(request, response);
-                return;
-            }
-            int number = Integer.parseInt(numberStr);
-            product.setNumber(number);
-        }
-        try {
-            productService.create(product);
-        } catch (SQLException e) {
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
-            showError(request, response);
-            return;
-        }
+        Product product = new Product();
+//                .productName(name)
+//                .isSoldByWeight(isSoldByWeight)
+//                .price(price)
+//                .byManager(user)
+//                .build();
+//        if (isSoldByWeight) {
+//            String weightStr = request.getParameter("weight");
+//            if (!Regex.isNumberCorrect(weightStr)) {
+//                request.setAttribute("weight_error_message", "Invalid price");
+//                showError(request, response);
+//                return;
+//            }
+//            long weight = Long.parseLong(weightStr);
+//            product.setWeight(weight);
+//        } else {
+//            String numberStr = request.getParameter("number");
+//            if (!Regex.isNumberCorrect(numberStr)) {
+//                request.setAttribute("number_error_message", "Invalid number");
+//                showError(request, response);
+//                return;
+//            }
+//            int number = Integer.parseInt(numberStr);
+//            product.setNumber(number);
+//      }
+//        try {
+//            productService.create(product);
+//        } catch (SQLException e) {
+//            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
+//            showError(request, response);
+//            return;
+//        }
 
     }
 
