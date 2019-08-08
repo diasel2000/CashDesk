@@ -8,4 +8,8 @@ import java.io.IOException;
 public interface Command {
     void execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException;
+    default void forward(HttpServletRequest request, HttpServletResponse response, String path)
+            throws ServletException, IOException {
+        request.getServletContext().getRequestDispatcher(path).forward(request, response);
+    }
 }

@@ -9,7 +9,7 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 
 
 <title>Cash Desk</title>
@@ -53,7 +53,7 @@
                     <h2><fmt:message key="chouse_y_type_prof" /></h2>
                </div>
                
-               <a href="/secured/caisher/cashier.jsp">
+               <a href="${pageContext.request.contextPath}/cashier">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                          <div class="service-thumb">
                               <h4><fmt:message key="index.caisher" /></h4>
@@ -66,7 +66,7 @@
                     </div>
               </a>
 
-              <a href="/secured/seniorcaisher/seniorcashier.jsp">
+              <a href="${pageContext.request.contextPath}/adminCaisher">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
                          <div class="service-thumb">
                               <h4><fmt:message key="index.seniorcaisher" /></h4>
@@ -78,7 +78,7 @@
                          </div>
                     </div>
                </a>
-                <a href="/secured/supervisor/supervisor.jsp">
+                <a href="${pageContext.request.contextPath}/supervisor">
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.8s">
                          <div class="service-thumb">
                               <h4><fmt:message key="index.supervisor" /></h4>

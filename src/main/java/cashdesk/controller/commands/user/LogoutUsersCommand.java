@@ -15,5 +15,6 @@ public class LogoutUsersCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UsersCommand.setUser(request,null);
         LOGGER.info("logged out");
+        response.sendRedirect("/index.jsp");
     }
 }

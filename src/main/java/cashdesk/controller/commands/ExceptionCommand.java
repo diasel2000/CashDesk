@@ -19,5 +19,6 @@ public class ExceptionCommand implements Command {
 
             default: request.setAttribute("message", "An error has occurred");
         }
+
     }
 }

@@ -31,7 +31,7 @@
             
           <div class="container-login100">
                <div class="wrap-login100">
-                    <form method="post" action="<%=request.getContextPath()%>
+                    <form method="post"  action="${pageContext.request.contextPath}/user-login">
                                               /LoginServlet" class="login100-form validate-form">
                          <span class="login100-form-title p-b-34">
                               <fmt:message key="login.enter" />
