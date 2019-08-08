@@ -8,12 +8,12 @@
 
   <servlet>
     <servlet-name>Servlet</servlet-name>
-    <servlet-class>Servlet</servlet-class>
+    <servlet-class>cashdesk.controller.servlets.Servlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>Servlet</servlet-name>
-    <url-pattern>/cashdesk/controller/Servlet</url-pattern>
+    <url-pattern>/key/*</url-pattern>
   </servlet-mapping>
 
   <filter>
