@@ -35,25 +35,37 @@
             
           <div class="container-login100">
                <div class="wrap-login100">
-                    <form class="login100-form validate-form"  action="${pageContext.request.contextPath}/user-register">
+                    <form class="login100-form validate-form"  action="${pageContext.request.contextPath}/key/users-register">
                          <span class="login100-form-title p-b-34">
                              <fmt:message key="registration" />
                          </span>
                          
                          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                               <input id="first-name" class="input100" type="text" name="username" placeholder='<fmt:message key="user.name" />'>
+                               <c:if test="${not empty username_error_message}">
+                                          	<p class="error">${username_error_message}</p>
+                                          </c:if>
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
                               <input class="input100" type="password" name="pass" placeholder='<fmt:message key="user.pass" />'>
+                              <c:if test="${not empty password_error_message}">
+                                              <p class="error">${password_error_message}</p>
+                                          </c:if>
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-                              <input id="first-name" class="input100" type="text" name="username" placeholder='<fmt:message key="reg.name" />'>
+                              <input id="first-name" class="input100" type="text" name="role" placeholder='<fmt:message key="reg.name" />'>
+                              <c:if test="${not empty role_error_message}">
+                                    <p class="error">${role_error_message}</p>
+                              </c:if>
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                               <input id="first-name" class="input100" type="text" name="username" placeholder='<fmt:message key="reg.lastname" />'>
+                              <c:if test="${not empty username_error_message}">
+                                    <p class="error">${username_error_message}</p>
+                         </c:if>
                               <span class="focus-input100"></span>
                          </div>
                         

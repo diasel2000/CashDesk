@@ -13,6 +13,10 @@ public class Caisher {
         this.lastName = lastName;
     }
 
+    public Caisher() {
+
+    }
+
     public int getId() {
         return id;
     }

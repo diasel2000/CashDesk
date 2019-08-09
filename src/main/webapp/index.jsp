@@ -98,6 +98,7 @@
     <div class="container">
         <div class="row">
             <a href="/public/login.jsp"><fmt:message key="registration" /></a>
+            <a href="${pageContext.request.contextPath}/key/logout">Logout</a>
                <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.8s">
                     <p class="white-color">Anatolii Huzov &copy; 2019 Cash Desk 
                     | Design: Stolen on the internet</p>

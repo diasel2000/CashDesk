@@ -6,7 +6,6 @@ import cashdesk.model.entity.Users;
 import org.apache.log4j.Logger;
 
 import javax.security.auth.login.LoginException;
-import javax.xml.registry.infomodel.User;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -23,21 +22,21 @@ public class UserService {
         }
     }
 
-//    public Optional<User> login(String email, String pass) throws LoginException {
-//        Optional<User> result;
-//        try (UsersDAO userDao = daoFactory.createUserDao()) {
-//            result = userDao.findByEmail(email);
-//        }
-//        if (result.isPresent()) {
-//            if (result.get().getPassword().equals(pass)) {
-//                return result;
-//            }
-//            LOGGER.info("Wrong password : {} for email : {}", pass, email);
-//
-//        }
-//        LOGGER.info("Wrong email : {}", email);
-//        throw new WrongEmailException("User with email " + email + " is not found.");
-//    }
+    public Optional<Users> login(String login, String pass) throws LoginException {
+        Optional<Users> result;
+        try (UsersDAO userDao = daoFactory.createUserDao()) {
+            result = userDao.findByLogin(login);
+        }
+        if (result.isPresent()) {
+            if (result.get().getPassword().equals(pass)) {
+                return result;
+            }
+            LOGGER.info("Wrong password : "+ pass + " for email : "+ login);
+
+        }
+        LOGGER.info("Wrong email : "+ login);
+            throw new LoginException("User with email " + login + " is not found.");
+    }
 
     public void register(String login, String pass, String role) throws SQLException {
         UsersDAO userDao = daoFactory.createUserDao();

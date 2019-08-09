@@ -17,7 +17,15 @@ public class Regex {
         LOGGER.debug("number.matches "+numberString + numberString.matches(NUMBER_REGEX));
         return numberString.matches(NUMBER_REGEX);
     }
+    public static boolean isRoleCorrect(String role) {
+        switch (role){
+        case("caisher"):return role.matches(LOGIN_REGEX);
+            case("seniorCaisher"):return role.matches(LOGIN_REGEX);
+            case("supervisor"):return role.matches(LOGIN_REGEX);
+            default: return false;
+        }
 
+    }
 
 
     public static boolean isLoginCorrect(String login) {
