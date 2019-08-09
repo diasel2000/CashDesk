@@ -87,8 +87,8 @@
                     <p class="white-color">Anatolii Huzov &copy; 2019 Cash Desk 
                     | Design: Stolen on the internet</p>
                   
-          </div>
-     </div>
+                </div>
+     </div></div>
 </footer>
 
 <!-- SCRIPTS -->

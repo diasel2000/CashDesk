@@ -109,7 +109,7 @@
                     | Design: Stolen on the internet</p>
                   
           </div>
-     </div>
+     </div></div>
 </footer>
 
 <!-- SCRIPTS -->
