@@ -33,7 +33,7 @@ public class EncodingFilter implements Filter {
             request.setAttribute("greeting", "Not found! Sorry");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }else {
-            filterChain.doFilter(request, response);
+            filterChain.doFilter ( request, response );
         }
     }
 

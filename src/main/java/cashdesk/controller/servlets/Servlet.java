@@ -13,6 +13,8 @@ import cashdesk.controller.commands.user.UserListCommand;
 import cashdesk.model.srvice.CheckService;
 import cashdesk.model.srvice.ProductService;
 import cashdesk.model.srvice.UserService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,11 +22,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 public class Servlet extends HttpServlet {
+    private static final Logger LOGGER = LogManager.getLogger(LoginUsersCommand.class);
     private Map<String, Command> commands = new HashMap<>();
     private ProductService productService = new ProductService();
 
@@ -60,7 +64,13 @@ public class Servlet extends HttpServlet {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/key/" , "");
         Command command = commands.containsKey(path) ? commands.get(path) : commands.get("/index.jsp");
-        command.execute(request, response);
+        try {
+            command.execute(request, response);
+        } catch (SQLException e) {
+           LOGGER.debug ( "SQL Exception in Servlet: ", e);
+        } catch (NullPointerException e){
+            LOGGER.debug ( "Redirect: ", e);
+        }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -38,13 +38,13 @@
                          
                          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                               <input id="first-name" class="input100" type="text" name="login" placeholder='<fmt:message key="user.name" />'>
-                              <c:if test="${not empty login_error_message}">
+                              <c:if test="${not empty login_error_message}"><%--@elvariable id="login_error_message" type=""--%>
                                    	<p class="error">${login_error_message}</p>
                               </c:if>
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-                              <input class="input100" type="password" name="password" placeholder='<fmt:message key="user.pass" />'>
+                              <input class="input100" type="password" name="pass" placeholder='<fmt:message key="user.pass" />'>
                               <c:if test="${not empty password_error_message}">
                                    <p class="error">${password_error_message}</p>
                               </c:if>
@@ -54,8 +54,6 @@
                          <div class="container-login100-form-btn">
                               <input type="submit" value='<fmt:message key="login.enter" />' class="login100-form-btn">
                               </input>
-                              <input type="submit" value='<fmt:message key="reset" />' class="login100-form-btn">
-                               </input>
                                <c:if test="${not empty log_error_message}">
                                     <p class="error">${log_error_message}</p>
                                </c:if>

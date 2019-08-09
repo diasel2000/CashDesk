@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogoutUsersCommand implements Command {
@@ -16,5 +17,7 @@ public class LogoutUsersCommand implements Command {
         UsersCommand.setUser(request,null);
         LOGGER.info("logged out");
         response.sendRedirect("/index.jsp");
+        HttpSession session=request.getSession();
+        session.invalidate();
     }
 }

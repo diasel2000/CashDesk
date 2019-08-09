@@ -22,7 +22,7 @@ public class UserService {
         }
     }
 
-    public Optional<Users> login(String login, String pass) throws LoginException {
+    public Optional<Users> login(String login, String pass) throws LoginException, SQLException {
         Optional<Users> result;
         try (UsersDAO userDao = daoFactory.createUserDao()) {
             result = userDao.findByLogin(login);

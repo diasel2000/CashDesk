@@ -10,7 +10,7 @@ import java.util.List;
 public class CheckService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 
-    public List<Check> getAllChecks(){
+    public List<Check> getAllChecks() throws SQLException {
         try (CheckDAO checkDao = daoFactory.createCheckDao()) {
             try {
                 return checkDao.findAll();

@@ -9,9 +9,11 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.security.auth.login.LoginException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -26,9 +28,10 @@ public class LoginUsersCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
+
         if (login == null || login.equals("")) {
             request.setAttribute("login_error_message", "Set in the login");
             return;
@@ -53,21 +56,30 @@ public class LoginUsersCommand implements Command {
         try {
             Optional<Users> user = userService.login(login, pass);
             UsersCommand.setUser(request, user.get());
-            LOGGER.info("User " + login + " of role  logged succesfully" + user.get().getRole());
+            LOGGER.info("User " + login + " logged succesfully whith role: " + user.get().getRole());
+            if (user.get ().getRole ().equals ( "seniorCaisher" )) {
+                HttpSession session = request.getSession ();
+                session.setAttribute ( "seniorcaisher",login );
+                request.setAttribute ( "login",login );
+                response.sendRedirect ( request.getContextPath ()+"/secured/seniorcaisher/seniorcashier.jsp" );
+                return;
+            }
+            if (user.get ().getRole ().equals ( "supervisor" )) {
+                HttpSession session = request.getSession ();
+                session.setAttribute ( "supervisor",login );
+                request.setAttribute ( "login",login );
+                response.sendRedirect ( request.getContextPath ()+"/secured/supervisor/supervisor.jsp" );
 
-            if (user.get().getRole() == "seniorCaisher") {
-                forward(request, response, "/secured/seniorcaisher/seniorcashier.jsp");
                 return;
             }
-            if (user.get().getRole() == "supervisor") {
-                forward(request, response, "/secured/supervisor/supervisor.jsp");
+            if (user.get ().getRole ().equals ( "caisher" )) {
+                HttpSession session = request.getSession ();
+                session.setAttribute ( "caisher",login );
+                request.setAttribute ( "login",login );
+                response.sendRedirect ( request.getContextPath ()+"/secured/caisher/cashier.jsp" );
                 return;
             }
-            if (user.get().getRole() == "caisher") {
-                forward(request, response, "/secured/caisher/cashier.jsp");
-                return;
-            }
-            forward(request, response, "/public/login.jsp");
+            response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
             return;
         } catch (LoginException e) {
             request.setAttribute("log_error_message", "Wrong login o password");

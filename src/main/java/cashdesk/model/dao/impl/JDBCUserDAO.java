@@ -29,7 +29,7 @@ public class JDBCUserDAO implements UsersDAO {
         String caisherLastName = caisher.getLastName();
 
         try {
-            String insertIntoUsers = "INSERT INTO users (id_user,user_login, user_pass, user_role) VALUES (?,?,?,?)";
+            String insertIntoUsers = "INSERT INTO users (id_users,user_login, user_pass, user_role) VALUES (?,?,?,?)";
             PreparedStatement pst = connection.prepareStatement(insertIntoUsers);
             pst.setInt(1, userId);
             pst.setString(2, userLogin);
@@ -54,7 +54,7 @@ public class JDBCUserDAO implements UsersDAO {
     @Override
     public Users findById(int id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "select * from user where id_users = (?)");
+                "select * from users where id_users = (?)");
         stmt.setInt(1, id);
         ResultSet resultSet = stmt.executeQuery();
         UserMaper userMapper = new UserMaper();
@@ -101,7 +101,7 @@ public class JDBCUserDAO implements UsersDAO {
     @Override
     public Optional<Users> findByLogin(String login) {
         Optional<Users> result = Optional.empty();
-        try(PreparedStatement ps = connection.prepareCall("SELECT * FROM user WHERE email = ?")){
+        try(PreparedStatement ps = connection.prepareCall("SELECT * FROM users WHERE user_login  = ?")){
             ps.setString( 1, login);
             ResultSet rs;
             rs = ps.executeQuery();
@@ -137,7 +137,7 @@ public class JDBCUserDAO implements UsersDAO {
 
     public void register(String login, String pass, String role) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "INSERT INTO `cash desk`.`users` (`user_login`, `user_pass`, `user_role`) VALUES ('?', '?', '?');");
+                "INSERT INTO users (user_login, user_pass, user_role) VALUES (?, ?, ?);");
         stmt.setString(1, login);
         stmt.setString(2, pass);
         stmt.setString(3, role);

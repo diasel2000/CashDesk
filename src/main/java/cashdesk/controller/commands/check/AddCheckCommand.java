@@ -25,7 +25,7 @@ public class AddCheckCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Check check = new Check();
         BigDecimal totalPrice = BigDecimal.valueOf(0);
         int i = 1;

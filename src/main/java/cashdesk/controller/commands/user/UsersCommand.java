@@ -23,11 +23,11 @@ public class UsersCommand {
                         Users user) {
         HttpSession session = request.getSession();
         ServletContext context = request.getServletContext();
-        session.setAttribute("user", user);
+        session.setAttribute("loged", user);
     }
 
     static boolean checkLoggedUser(HttpServletRequest request, String login){
-        if((Users) ((HttpServletRequest) request).getSession().getAttribute("user")!=null){
+        if((Users) ((HttpServletRequest) request).getSession().getAttribute("loged")!=null){
             return true;
         }
         return false;
