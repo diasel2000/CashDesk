@@ -29,7 +29,7 @@ public class CheckService {
 
     public Check getCheckById(int id) throws SQLException {
         try (CheckDAO dao = daoFactory.createCheckDao()) {
-            return dao.findById(id);
+            return dao.findByCode (id);
         }
     }
 }

@@ -11,27 +11,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class UsersCommand {
-    static void setUserRole(HttpServletRequest request,
-                            String role, String login) {
-        HttpSession session = request.getSession();
-        ServletContext context = request.getServletContext();
-        context.setAttribute("login", login);
-        session.setAttribute("user", role);
-    }
 
     static void setUser(HttpServletRequest request,
                         Users user) {
-        HttpSession session = request.getSession();
-        ServletContext context = request.getServletContext();
-        session.setAttribute("loged", user);
+        HttpSession session = request.getSession ();
+        ServletContext context = request.getServletContext ();
+        session.setAttribute ( "loggedIn", user );
     }
-
-    static boolean checkLoggedUser(HttpServletRequest request, String login){
-        if((Users) ((HttpServletRequest) request).getSession().getAttribute("loged")!=null){
-            return true;
-        }
-        return false;
-    }
-
-
 }

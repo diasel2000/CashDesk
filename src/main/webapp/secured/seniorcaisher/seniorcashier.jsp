@@ -103,7 +103,7 @@
 <footer>
     <div class="container">
         <div class="row">
-
+           <h1><a href="${pageContext.request.contextPath}/key/logout">Logout</a></h1>
                <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.8s">
                     <p class="white-color">Anatolii Huzov &copy; 2019 Cash Desk 
                     | Design: Stolen on the internet</p>

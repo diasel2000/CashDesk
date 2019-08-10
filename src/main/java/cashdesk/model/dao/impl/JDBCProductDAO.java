@@ -21,17 +21,15 @@ public class JDBCProductDAO implements ProductDAO {
 
     @Override
     public void create(Product product) throws SQLException {
-        int id = product.getId();
         String productName = product.getProductName();
         BigDecimal price = product.getPrice();
         int code = product.getCode();
         PreparedStatement stmt = connection.prepareStatement(
-                "insert into product (id_product, product_name, price, code)" +
+                "insert into product (product_name, price, code)" +
                         " values (?, ?, ?, ?)");
-        stmt.setInt(1, id);
-        stmt.setString(2, productName);
-        stmt.setBigDecimal(5, price);
-        stmt.setInt(7, code);
+        stmt.setString(1, productName);
+        stmt.setBigDecimal(2, price);
+        stmt.setInt(3, code);
         stmt.executeUpdate();
 
         stmt.close();
@@ -39,10 +37,10 @@ public class JDBCProductDAO implements ProductDAO {
     }
 
     @Override
-    public Product findById(int id) throws SQLException {
+    public Product findByCode(int code) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "select * from product where id_product = (?)");
-        stmt.setInt(1, id);
+                "select * from product where code = (?)");
+        stmt.setInt(1, code);
         ResultSet rs = stmt.executeQuery();
         ProductMaper productMapper = new ProductMaper();
 

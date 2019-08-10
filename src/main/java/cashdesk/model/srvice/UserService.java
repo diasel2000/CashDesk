@@ -22,10 +22,11 @@ public class UserService {
         }
     }
 
+
     public Optional<Users> login(String login, String pass) throws LoginException, SQLException {
         Optional<Users> result;
         try (UsersDAO userDao = daoFactory.createUserDao()) {
-            result = userDao.findByLogin(login);
+            result = userDao.findByLogin(login,pass);
         }
         if (result.isPresent()) {
             if (result.get().getPassword().equals(pass)) {
@@ -34,7 +35,7 @@ public class UserService {
             LOGGER.info("Wrong password : "+ pass + " for email : "+ login);
 
         }
-        LOGGER.info("Wrong email : "+ login);
+        LOGGER.info("Wrong login : "+ login);
             throw new LoginException("User with email " + login + " is not found.");
     }
 

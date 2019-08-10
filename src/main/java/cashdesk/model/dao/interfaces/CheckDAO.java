@@ -9,7 +9,7 @@ import java.util.List;
 public interface CheckDAO extends GenericDAO<Check> {
 
 
-    Check findById(int id) throws SQLException;
+    Check findByCode(int id) throws SQLException;
 
     List<Check> findAll() throws SQLException;
 

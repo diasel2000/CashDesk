@@ -1,6 +1,7 @@
 package cashdesk.controller.commands.user;
 
 import cashdesk.controller.commands.Command;
+import cashdesk.model.dao.impl.JDBCUserDAO;
 import cashdesk.model.entity.Users;
 import cashdesk.model.srvice.UserService;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -30,61 +32,36 @@ public class LoginUsersCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String login = request.getParameter("login");
-        String pass = request.getParameter("pass");
-
+        String pass = request.getParameter("password");
         if (login == null || login.equals("")) {
             request.setAttribute("login_error_message", "Set in the login");
-            return;
-        }
+        }else
         if (pass == null || pass.equals("")) {
             request.setAttribute("password_error_message", "Set in the password");
-            return;
-        }
+        }else
         if (!Regex.isPasswordCorrect(pass)) {
             request.setAttribute("password_error_message", "Invalid password");
-
-            return;
-        }
+        }else
         if (!Regex.isLoginCorrect(login)) {
             request.setAttribute("login_error_message", "Invalid login");
-            return;
-        }
-        if (UsersCommand.checkLoggedUser(request, login)) {
-            LOGGER.debug("User logged in");
-            return;
         }
         try {
             Optional<Users> user = userService.login(login, pass);
             UsersCommand.setUser(request, user.get());
             LOGGER.info("User " + login + " logged succesfully whith role: " + user.get().getRole());
             if (user.get ().getRole ().equals ( "seniorCaisher" )) {
-                HttpSession session = request.getSession ();
-                session.setAttribute ( "seniorcaisher",login );
-                request.setAttribute ( "login",login );
                 response.sendRedirect ( request.getContextPath ()+"/secured/seniorcaisher/seniorcashier.jsp" );
-                return;
-            }
+            }else
             if (user.get ().getRole ().equals ( "supervisor" )) {
-                HttpSession session = request.getSession ();
-                session.setAttribute ( "supervisor",login );
-                request.setAttribute ( "login",login );
                 response.sendRedirect ( request.getContextPath ()+"/secured/supervisor/supervisor.jsp" );
-
-                return;
-            }
+            }else
             if (user.get ().getRole ().equals ( "caisher" )) {
-                HttpSession session = request.getSession ();
-                session.setAttribute ( "caisher",login );
-                request.setAttribute ( "login",login );
                 response.sendRedirect ( request.getContextPath ()+"/secured/caisher/cashier.jsp" );
-                return;
-            }
-            response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
-            return;
+            }else response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
         } catch (LoginException e) {
             request.setAttribute("log_error_message", "Wrong login o password");
+            LOGGER.info("Invalid attempt of login user: " + login);
+            response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
         }
-        LOGGER.info("Invalid attempt of login user: " + login);
-        forward(request, response, "/public/login.jsp");
     }
 }

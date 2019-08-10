@@ -9,7 +9,7 @@ public interface SeniorCaisherDAO extends GenericDAO<SeniorCaisher> {
 
     void add(SeniorCaisher seniorCaisher);
 
-    SeniorCaisher findById(int id);
+    SeniorCaisher findByCode(int id);
 
     List<SeniorCaisher> findAll();
 

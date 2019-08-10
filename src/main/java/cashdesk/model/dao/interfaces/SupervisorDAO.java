@@ -9,7 +9,7 @@ public interface SupervisorDAO extends GenericDAO<Supervisor> {
 
     void add(Supervisor supervisor);
 
-    Supervisor findById(int id);
+    Supervisor findByCode(int id);
 
     List<Supervisor> findAll();
 

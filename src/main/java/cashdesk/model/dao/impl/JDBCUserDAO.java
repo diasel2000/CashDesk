@@ -52,7 +52,7 @@ public class JDBCUserDAO implements UsersDAO {
     }
 
     @Override
-    public Users findById(int id) throws SQLException {
+    public Users findByCode(int id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "select * from users where id_users = (?)");
         stmt.setInt(1, id);
@@ -99,10 +99,11 @@ public class JDBCUserDAO implements UsersDAO {
     }
 
     @Override
-    public Optional<Users> findByLogin(String login) {
+    public Optional<Users> findByLogin(String login, String pass) {
         Optional<Users> result = Optional.empty();
-        try(PreparedStatement ps = connection.prepareCall("SELECT * FROM users WHERE user_login  = ?")){
+        try(PreparedStatement ps = connection.prepareCall("SELECT * FROM users WHERE (user_login , user_pass) = (?,?)")){
             ps.setString( 1, login);
+            ps.setString( 2, pass);
             ResultSet rs;
             rs = ps.executeQuery();
             UserMaper mapper = new UserMaper();

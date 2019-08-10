@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductDAO extends GenericDAO<Product> {
 
-    Product findById(int id) throws SQLException;
+    Product findByCode(int id) throws SQLException;
 
     List<Product> findAll() throws SQLException;
 

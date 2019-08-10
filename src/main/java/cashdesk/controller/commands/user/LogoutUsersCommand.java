@@ -11,13 +11,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogoutUsersCommand implements Command {
-    private static final Logger LOGGER = LogManager.getLogger(LoginUsersCommand.class);
+    private static final Logger LOGGER = LogManager.getLogger ( LoginUsersCommand.class );
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UsersCommand.setUser(request,null);
-        LOGGER.info("logged out");
-        response.sendRedirect("/index.jsp");
-        HttpSession session=request.getSession();
-        session.invalidate();
+        UsersCommand.setUser ( request, null );
+        LOGGER.info ( "logged out" );
+        HttpSession session = request.getSession ( false );
+        if (session != null) {
+            session.invalidate ();
+            session = null;
+        }
+        response.sendRedirect ( "/index.jsp" );
     }
 }

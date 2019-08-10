@@ -56,7 +56,7 @@ public class JDBCCheckDAO implements CheckDAO {
     }
 
     @Override
-    public Check findById(int id) throws SQLException {
+    public Check findByCode(int id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "select * from check" +
                         " where check.id_check = (?) ");

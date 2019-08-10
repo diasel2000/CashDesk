@@ -60,7 +60,6 @@ public class RegisterUsersCommand implements Command {
 
         try {
             userService.register(username,  pass, role);
-            System.out.println("send");
         } catch (SQLException e) {
             LOGGER.debug("Database error when registering user "+ username);
             request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());

@@ -49,21 +49,31 @@
 
                <div class="" data-wow-delay="0.2s">
                     <!-- SECTION TITLE -->
-                    <h2>Add product in check</h2>
+                    <h2>Add product in Base</h2>
                </div>
-               <form class="login100-form validate-form">
+               <form class="login100-form validate-form" action="${pageContext.request.contextPath}/key/supervisor/addProduct" method="post">
                     <table>
                          <tr>
                            <th>Code</th>
                            <th>Product</th>
-                           <th>Count</th>
                            <th>Price</th>
                          </tr>
                          <tr>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product code"></td>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product name"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="count"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="price"></td>
+                           <td>
+                               <input id="first-name" class="input100" type="text" name="code" value="${product.code}" placeholder="product code">
+                               <c:if test="${not empty code_error_message}">
+                                   <p class="error">${code_error_message}</p>
+                               </c:if>
+                           </td>
+                           <td>
+                               <input id="first-name" class="input100" type="text" name="name" value="${product.name}" placeholder="product name">
+                           </td>
+                           <td>
+                               <input id="first-name" class="input100" type="number" name="price" value="${product.price}" placeholder="price">
+                               <c:if test="${not empty price_error_message}">
+                                   <p class="error">${price_error_message}</p>
+                               </c:if>
+                           </td>
                          </tr>
                          <tr>
                            <th><div class="container-login100-form-btn">
@@ -74,6 +84,8 @@
                          </tr>
                     </table>
                </form>
+
+
           </div>
      </div>
 </section>
@@ -82,7 +94,7 @@
 <footer>
     <div class="container">
         <div class="row">
-
+           <h1><a href="${pageContext.request.contextPath}/key/logout">Logout</a></h1>
                <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.8s">
                     <p class="white-color">Anatolii Huzov &copy; 2019 Cash Desk 
                     | Design: Stolen on the internet</p>

@@ -44,7 +44,7 @@
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-                              <input class="input100" type="password" name="pass" placeholder='<fmt:message key="user.pass" />'>
+                              <input class="input100" type="password" name="password" placeholder='<fmt:message key="user.pass" />'>
                               <c:if test="${not empty password_error_message}">
                                    <p class="error">${password_error_message}</p>
                               </c:if>
@@ -54,9 +54,12 @@
                          <div class="container-login100-form-btn">
                               <input type="submit" value='<fmt:message key="login.enter" />' class="login100-form-btn">
                               </input>
-                               <c:if test="${not empty log_error_message}">
-                                    <p class="error">${log_error_message}</p>
-                               </c:if>
+                             <c:if test="${not empty loggedInUser}">
+                                 <p>You're still logged in.</p>
+                             </c:if>
+                             <c:if test="${empty loggedInUser}">
+                                 <p>You're not logged in!</p>
+                             </c:if>
                          </div>
 
                          <div class="w-full text-center">

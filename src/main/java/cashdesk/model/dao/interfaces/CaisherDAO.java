@@ -8,7 +8,7 @@ import java.util.List;
 public interface CaisherDAO extends GenericDAO<Caisher> {
     void add(Caisher caisher);
 
-    Caisher findById(int id);
+    Caisher findByCode(int id);
 
     List<Caisher> findAll();
 
