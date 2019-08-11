@@ -9,6 +9,7 @@ public class Regex {
     private static final String LOGIN_REGEX = "^[a-zA-Z\\\\s]+";
     private static final String PASSWORD_REGEX = "^(?=\\S+$).{5,}$";
     private static final String NUMBER_REGEX = "[\\d]+";
+    private static final String CODE_REGEX = "[0-9]";
 
     public static boolean isNumberCorrect(String numberString) {
         if (numberString == null) {
@@ -17,6 +18,14 @@ public class Regex {
         LOGGER.debug("number.matches "+numberString + numberString.matches(NUMBER_REGEX));
         return numberString.matches(NUMBER_REGEX);
     }
+    public static boolean isCodeCorrect(String numberString) {
+        if (numberString == null) {
+            return false;
+        }
+        LOGGER.debug("number.matches "+numberString + numberString.matches(CODE_REGEX));
+        return numberString.matches(CODE_REGEX);
+    }
+
     public static boolean isRoleCorrect(String role) {
         switch (role){
         case("caisher"):return role.matches(LOGIN_REGEX);

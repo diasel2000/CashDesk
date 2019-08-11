@@ -10,6 +10,7 @@ import cashdesk.controller.commands.user.LoginUsersCommand;
 import cashdesk.controller.commands.user.LogoutUsersCommand;
 import cashdesk.controller.commands.user.RegisterUsersCommand;
 import cashdesk.controller.commands.user.UserListCommand;
+import cashdesk.model.entity.Product;
 import cashdesk.model.srvice.CheckService;
 import cashdesk.model.srvice.ProductService;
 import cashdesk.model.srvice.UserService;
@@ -22,9 +23,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 public class Servlet extends HttpServlet {
@@ -34,8 +37,7 @@ public class Servlet extends HttpServlet {
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
-        servletConfig.getServletContext().setAttribute("loggedUser", new HashSet<String>());
-
+        servletConfig.getServletContext().setAttribute("loggedIn", new HashSet<String>());
         commands.put("supervisor/product", new ProductCommand(new ProductService()));
         commands.put("supervisor/products", new ProductListCommand(new ProductService()));
         commands.put("supervisor/addProduct", new AddProductCommand(new ProductService()));
@@ -51,13 +53,13 @@ public class Servlet extends HttpServlet {
         commands.put("cashier/checks/add", new AddCheckCommand(new CheckService()));
         commands.put("supervisor", new SupervisorCommand());
         commands.put("adminCaisher/users", new UserListCommand(new UserService()));
-        //commands.put("admin/users/edit", new EditUsersCommand(new UserService()));
         commands.put("adminCaisher", new SeniorCaisherCommand());
         commands.put("cashier", new CaisherCommand());
     }
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws IOException, ServletException {
+
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -70,6 +72,8 @@ public class Servlet extends HttpServlet {
            LOGGER.debug ( "SQL Exception in Servlet: ", e);
         } catch (NullPointerException e){
             LOGGER.debug ( "Redirect: ", e);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace ();
         }
     }
 

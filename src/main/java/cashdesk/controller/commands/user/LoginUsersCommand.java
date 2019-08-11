@@ -1,22 +1,20 @@
 package cashdesk.controller.commands.user;
 
 import cashdesk.controller.commands.Command;
-import cashdesk.model.dao.impl.JDBCUserDAO;
 import cashdesk.model.entity.Users;
 import cashdesk.model.srvice.UserService;
 
+import cashdesk.utils.MD5;
 import cashdesk.utils.Regex;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.security.auth.login.LoginException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.PreparedStatement;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -30,9 +28,10 @@ public class LoginUsersCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         String login = request.getParameter("login");
         String pass = request.getParameter("password");
+        String newPass = MD5.MD5 ( pass );
         if (login == null || login.equals("")) {
             request.setAttribute("login_error_message", "Set in the login");
         }else
@@ -46,7 +45,8 @@ public class LoginUsersCommand implements Command {
             request.setAttribute("login_error_message", "Invalid login");
         }
         try {
-            Optional<Users> user = userService.login(login, pass);
+
+            Optional<Users> user = userService.login(login, newPass);
             UsersCommand.setUser(request, user.get());
             LOGGER.info("User " + login + " logged succesfully whith role: " + user.get().getRole());
             if (user.get ().getRole ().equals ( "seniorCaisher" )) {

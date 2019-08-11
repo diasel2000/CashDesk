@@ -26,7 +26,7 @@ public class UserService {
     public Optional<Users> login(String login, String pass) throws LoginException, SQLException {
         Optional<Users> result;
         try (UsersDAO userDao = daoFactory.createUserDao()) {
-            result = userDao.findByLogin(login,pass);
+            result = userDao.findByLogin(login, pass);
         }
         if (result.isPresent()) {
             if (result.get().getPassword().equals(pass)) {
@@ -41,7 +41,7 @@ public class UserService {
 
     public void register(String login, String pass, String role) throws SQLException {
         UsersDAO userDao = daoFactory.createUserDao();
-        userDao.register(login, pass, role);
+        userDao.register(login,  pass, role);
     }
 
     public void update(Users user) throws SQLException {

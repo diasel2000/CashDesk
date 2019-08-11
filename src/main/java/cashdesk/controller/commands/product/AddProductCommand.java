@@ -1,10 +1,13 @@
 package cashdesk.controller.commands.product;
 
 import cashdesk.controller.commands.Command;
+import cashdesk.controller.commands.user.LoginUsersCommand;
 import cashdesk.model.entity.Product;
 import cashdesk.model.entity.Users;
 import cashdesk.model.srvice.ProductService;
 import cashdesk.utils.Regex;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,45 +22,51 @@ public class AddProductCommand implements Command {
     public AddProductCommand(ProductService productService) {
         this.productService = productService;
     }
-
+    private static final Logger LOGGER = LogManager.getLogger(AddProductCommand.class);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String codeStr = request.getParameter("code");
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String code = request.getParameter("code");
         String priceStr = request.getParameter("price");
-        if (!Regex.isNumberCorrect(codeStr)) {
-            request.setAttribute("code_error_message", "Invalid code");
-            showError(request, response);
-            return;
-        }
-        if (!Regex.isNumberCorrect(priceStr)) {
-            request.setAttribute("price_error_message", "Invalid price");
-            showError(request, response);
-            return;
-        }
-        int code = Integer.parseInt(codeStr);
         String name = request.getParameter("name");
+
+        if (code==null||code.equals("")||!Regex.isNumberCorrect(code)) {
+            request.setAttribute("code_error_message", "Invalid code");
+            forward(request, response, "/secured/supervisor/supervisor.jsp");
+            return;
+        }
+        if (Regex.isCodeCorrect(code)) {
+            request.setAttribute("code", "Code must be number");
+            forward(request, response, "/secured/supervisor/supervisor.jsp");
+            return;
+        }
+        if (priceStr==null||priceStr.equals ( "" )||!Regex.isNumberCorrect(priceStr)) {
+            request.setAttribute("price_error_message", "Invalid price");
+            //forward(request, response, "/secured/supervisor/supervisor.jsp");
+            showError(request, response);
+        }
         if(name==null||name.equals("")){
             request.setAttribute("name_error_message", "Put in the name");
             showError(request, response);
+            //forward(request, response, "/secured/supervisor/supervisor.jsp");
             return;
         }
-        BigDecimal price = BigDecimal.valueOf(Long.parseLong(priceStr));
-        Users user = (Users) ((HttpServletRequest) request).getSession().getAttribute("user");
-        Product product = new Product();
-
         try {
-            productService.create(product);
+            BigDecimal price = BigDecimal.valueOf(Long.parseLong(priceStr));
+            productService.create(code,name,price);
         } catch (SQLException e) {
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
+           // request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
             showError(request, response);
             return;
+        }catch (NumberFormatException e){
+            request.setAttribute("num_error_message", "Prise format error: " + e.getMessage());
         }
-
+        showError(request, response);
     }
-
-    private void showError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         ProductListCommand listCommand = new ProductListCommand(productService);
         listCommand.execute(request, response);
+        LOGGER.debug ( "Error input" );
     }
+
 }

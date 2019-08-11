@@ -38,7 +38,11 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.17</version>
     </dependency>
-
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
     <dependency>
       <groupId>org.glassfish.main.extras</groupId>
       <artifactId>javaee</artifactId>

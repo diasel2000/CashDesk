@@ -8,6 +8,7 @@
 <fmt:setBundle basename="${bundle}"/>
 
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -51,6 +52,7 @@
                     <!-- SECTION TITLE -->
                     <h2>Add product in Base</h2>
                </div>
+
                <form class="login100-form validate-form" action="${pageContext.request.contextPath}/key/supervisor/addProduct" method="post">
                     <table>
                          <tr>
@@ -64,12 +66,18 @@
                                <c:if test="${not empty code_error_message}">
                                    <p class="error">${code_error_message}</p>
                                </c:if>
+                               <c:if test="${not empty code}">
+                                   <p class="error">${code}</p>
+                               </c:if>
                            </td>
                            <td>
-                               <input id="first-name" class="input100" type="text" name="name" value="${product.name}" placeholder="product name">
+                               <input id="first-name" class="input100" type="text" name="name" placeholder="product name">
+                               <c:if test="${not empty name_error_message}">
+                                   <p class="error">${name_error_message}</p>
+                               </c:if>
                            </td>
                            <td>
-                               <input id="first-name" class="input100" type="number" name="price" value="${product.price}" placeholder="price">
+                               <input id="first-name" class="input100" type="number" name="price" placeholder="price">
                                <c:if test="${not empty price_error_message}">
                                    <p class="error">${price_error_message}</p>
                                </c:if>
@@ -77,18 +85,27 @@
                          </tr>
                          <tr>
                            <th><div class="container-login100-form-btn">
-                              <button class="login100-form-btn">
+                              <button  class="login100-form-btn" >
                                    Add prouct
                               </button>
                          </div></th>
+                             <c:if test="${not empty num_error_message}">
+                                 <p class="error">${num_error_message}</p>
+                             </c:if>
+                             <c:if test="${not empty add_message}">
+                                 <p class="error">${add_message}</p>
+                             </c:if>
                          </tr>
                     </table>
                </form>
 
 
           </div>
+
      </div>
 </section>
+
+<jsp:include page="supervisorlist.jsp"></jsp:include>
 
 <!-- FOOTER SECTION -->
 <footer>
@@ -103,7 +120,6 @@
      </div></div>
 </footer>
 
-<!-- SCRIPTS -->
 <script src="js/jquery.js"></script>
 <script src="js/custom.js"></script>
 

@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Product {
     private Integer id;
-    private int code;
+    private String code;
     private String productName;
     private BigDecimal price;
 
-    public Product(Integer id, int code, String productName, BigDecimal price) {
+    public Product(Integer id, String code, String productName, BigDecimal price) {
         this.id = id;
         this.code = code;
         this.productName = productName;
@@ -28,11 +28,11 @@ public class Product {
         this.id = id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

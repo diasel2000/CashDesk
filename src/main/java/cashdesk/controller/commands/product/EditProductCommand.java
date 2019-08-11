@@ -20,7 +20,7 @@ public class EditProductCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {String codeStr = request.getParameter("code");
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {String codeStr = request.getParameter("code");
         String priceStr = request.getParameter("price");
         if (!Regex.isNumberCorrect(codeStr)) {
             request.setAttribute("code_error_message", "Invalid code");
@@ -40,7 +40,7 @@ public class EditProductCommand implements Command {
         Users user = (Users) ((HttpServletRequest) request).getSession().getAttribute("user");
 
     }
-    private void showError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         ProductListCommand listCommand = new ProductListCommand(productService);
         listCommand.execute(request, response);
     }

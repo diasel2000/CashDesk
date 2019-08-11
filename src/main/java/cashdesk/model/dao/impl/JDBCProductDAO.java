@@ -20,20 +20,24 @@ public class JDBCProductDAO implements ProductDAO {
     }
 
     @Override
-    public void create(Product product) throws SQLException {
-        String productName = product.getProductName();
-        BigDecimal price = product.getPrice();
-        int code = product.getCode();
+    public void create(String productName,String code,BigDecimal price) throws SQLException {
+//        String productName = product.getProductName();
+//        BigDecimal price = product.getPrice();
+//        int code = product.getCode();
         PreparedStatement stmt = connection.prepareStatement(
-                "insert into product (product_name, price, code)" +
-                        " values (?, ?, ?, ?)");
+                "INSERT INTO product (product_name, price, code)" +
+                        " VALUES (?, ?, ?)");
         stmt.setString(1, productName);
         stmt.setBigDecimal(2, price);
-        stmt.setInt(3, code);
+        stmt.setString (3, code);
         stmt.executeUpdate();
-
         stmt.close();
         connection.close();
+    }
+
+    @Override
+    public void create(Product entity) throws SQLException {
+
     }
 
     @Override
@@ -55,10 +59,9 @@ public class JDBCProductDAO implements ProductDAO {
 
     @Override
     public List<Product> findAll() throws SQLException {
-        Map<Integer, Product> products = new HashMap<>();
+        Map<String, Product> products = new HashMap<>();
 
-        final String query = "" +
-                " select * from product";
+        final String query = " select * from product";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
 
@@ -67,6 +70,7 @@ public class JDBCProductDAO implements ProductDAO {
         while (rs.next()) {
             Product product = productMapper
                     .getEntity(rs);
+            productMapper.mapProducts ( products,product );
         }
         return new ArrayList<>(products.values());
     }
@@ -76,7 +80,7 @@ public class JDBCProductDAO implements ProductDAO {
         int id_product = product.getId();
         String productName = product.getProductName();
         BigDecimal price = product.getPrice();
-        int code = product.getCode();
+        String code = product.getCode();
         PreparedStatement stmt = connection.prepareStatement(
                 "update product id_product = ?,product_name = ?, price = ?, code = ?" +
                         " where id_product = ?");
@@ -85,7 +89,7 @@ public class JDBCProductDAO implements ProductDAO {
         //stmt.setBoolean(3, isSoldByWeight);
         stmt.setString(2, productName);
         stmt.setBigDecimal(3, price);
-        stmt.setLong(4, code);
+        stmt.setString (4, code);
         stmt.setInt(5, id_product);
         stmt.executeUpdate();
 
@@ -94,10 +98,10 @@ public class JDBCProductDAO implements ProductDAO {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(String code) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "delete from product where id_product = (?)");
-        stmt.setInt(1, id);
+                "DELETE FROM product WHERE (id_product = ?);" );
+        stmt.setString (1, code);
         stmt.executeUpdate();
 
         stmt.close();

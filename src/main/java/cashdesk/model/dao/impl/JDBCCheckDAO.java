@@ -45,7 +45,7 @@ public class JDBCCheckDAO implements CheckDAO {
             stmt.setInt(1, product.getId());
             stmt.setString(2, product.getProductName());
             stmt.setBigDecimal(3, product.getPrice());
-            stmt.setInt(4, product.getCode());
+            stmt.setString (4, product.getCode());
             stmt.addBatch();
         }
         stmt.executeBatch();
@@ -100,10 +100,10 @@ public class JDBCCheckDAO implements CheckDAO {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(String id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "delete from check where id_check = (?)");
-        stmt.setInt(1, id);
+        stmt.setString (1, id);
         ResultSet rs = stmt.executeQuery();
 
         stmt.close();

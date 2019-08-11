@@ -5,7 +5,6 @@ import cashdesk.model.dao.mapper.UserMaper;
 import cashdesk.model.entity.Caisher;
 import cashdesk.model.entity.Users;
 
-import javax.swing.*;
 import javax.xml.registry.infomodel.User;
 import java.sql.*;
 import java.util.*;
@@ -117,10 +116,10 @@ public class JDBCUserDAO implements UsersDAO {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(String id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "delete from users where id_users = (?)");
-        stmt.setInt(1, id);
+        stmt.setString(1, id);
         ResultSet rs = stmt.executeQuery();
 
         stmt.close();
@@ -137,13 +136,13 @@ public class JDBCUserDAO implements UsersDAO {
     }
 
     public void register(String login, String pass, String role) throws SQLException {
+
         PreparedStatement stmt = connection.prepareStatement(
                 "INSERT INTO users (user_login, user_pass, user_role) VALUES (?, ?, ?);");
         stmt.setString(1, login);
         stmt.setString(2, pass);
         stmt.setString(3, role);
         stmt.executeUpdate();
-        System.out.println("go og og");
         stmt.close();
         connection.close();
     }

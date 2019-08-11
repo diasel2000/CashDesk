@@ -13,7 +13,7 @@ public interface GenericDAO<T> extends AutoCloseable {
 
     void update(T entity) throws SQLException;
 
-    void delete(int id) throws SQLException;
+    void delete(String code) throws SQLException;
 
     void close();
 

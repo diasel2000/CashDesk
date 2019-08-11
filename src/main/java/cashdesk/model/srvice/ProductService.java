@@ -4,6 +4,7 @@ import cashdesk.model.dao.DaoFactory;
 import cashdesk.model.dao.interfaces.ProductDAO;
 import cashdesk.model.entity.Product;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,10 +28,10 @@ public class ProductService {
             return dao.findByCode (id);
         }
     }
-    public void create(Product product) throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            productDao.create(product);
-        }
+    public void create(String code, String name, BigDecimal price) throws SQLException {
+        ProductDAO productDao = daoFactory.createProductDao();
+            productDao.create(name,code,price);
+
     }
     public void addProduct(int code, String name, boolean isSoldByWeight, int number, long weight, long price) throws SQLException {
         try (ProductDAO productDao = daoFactory.createProductDao()) {
@@ -46,7 +47,7 @@ public class ProductService {
         }
     }
 
-    public void delete(int code) throws SQLException {
+    public void delete(String code) throws SQLException {
         try (ProductDAO productDao = daoFactory.createProductDao()) {
             productDao.delete(code);
         }
