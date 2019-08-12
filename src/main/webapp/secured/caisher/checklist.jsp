@@ -35,13 +35,12 @@
                 </tr>
                 <tr>
                     <td>Purchase amount</td>
-                    <td> <c:out value="${summ}" /></td>
+                    <td> <c:out value="${summ}" />$</td>
                 </tr>
 
             </table>
             <br>
             <br>
-            <a href="${pageContext.request.contextPath}/key/caisher/checks/addPage">Create new check</a>
             <br/>
         </div>
     </div>

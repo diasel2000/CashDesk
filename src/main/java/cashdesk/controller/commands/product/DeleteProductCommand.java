@@ -19,7 +19,6 @@ public class DeleteProductCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String code = request.getParameter("dcode");
-        System.out.println ("delete"+code);
         try {
             productService.delete(code);
             showError ( request,response );

@@ -51,18 +51,18 @@
                <div class="" data-wow-delay="0.2s">
                     <!-- SECTION TITLE -->
                     <h2>Check operations</h2>
+                   <c:if test="${not empty sql_error_message}">
+                       <p class="error">${sql_error_message}</p>
+                   </c:if>
                </div>
-               <form class="login100-form validate-form">
+               <form  action="${pageContext.request.contextPath}/key/adminCaisher/deleteCheck" class="login100-form validate-form">
                     <table>
                          <tr>
                            <th>Check_ID</th>
-                           <th>Product Quantity</th>
-                           <th>Price Sum</th>
                          </tr>
                          <tr>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="check id"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder=""></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="price"></td>
+                           <td><input id="first-name" class="input100" type="number" name="id_check" placeholder="check id"></td>
+
                            <td><div class="container-login100-form-btn"><button class="login100-form-btn">Delete Check</button></div></td>
                          </tr>
                     </table>
@@ -78,7 +78,9 @@
                         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <br> Purchase amount:  <c:out value="${summ}" />
+                        </td>
                     </tr>
                 </table>
                  <table>

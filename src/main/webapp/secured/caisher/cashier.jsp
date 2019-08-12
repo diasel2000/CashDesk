@@ -48,7 +48,7 @@
           <div class="row">
 
               <h2>
-                  Add product in Check <br/>
+                  Add product in Check
               </h2>
               <c:if test="${not empty sql_error_message}">
                   <p class="error">${sql_error_message}</p>

@@ -6,6 +6,7 @@ import cashdesk.model.entity.Product;
 import cashdesk.model.entity.Users;
 import cashdesk.model.srvice.CheckService;
 import cashdesk.model.srvice.ProductService;
+import cashdesk.utils.Payment;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,9 +44,10 @@ public class AddCheckCommand implements Command {
             Product product = productService.getProductById ( code );
             request.setAttribute ( "check",product );
             Map<Integer,BigDecimal> check = new HashMap<> (  );
-
             check.put ( product.getId (),product.getPrice () );
-            checkService.addCheck( code,product.getPrice ());
+            int counts = Integer.parseInt ( count );
+            Payment payment =new Payment ();
+            checkService.addCheck( code,payment.calculateCost (counts, product.getPrice ()));
             CheckListCommand checkListCommand = new CheckListCommand(checkService);
             checkListCommand.execute(request, response);
         } catch (SQLException e) {

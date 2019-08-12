@@ -113,9 +113,9 @@ public class JDBCCheckDAO implements CheckDAO {
     @Override
     public void delete(String id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "delete from check where id_check = (?)");
+                "DELETE FROM `cash desk`.`check` WHERE (`id_check` = (?));");
         stmt.setString (1, id);
-        ResultSet rs = stmt.executeQuery();
+        stmt.executeUpdate ();
 
         stmt.close();
         connection.close();

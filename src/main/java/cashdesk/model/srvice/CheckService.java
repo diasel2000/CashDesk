@@ -48,4 +48,9 @@ public class CheckService {
             checkDAO.addCheck( id_product, sum_price);
         }
     }
+    public void delete(String id) throws SQLException {
+        try (CheckDAO checkDAO = daoFactory.createCheckDao ()){
+            checkDAO.delete ( id );
+        }
+    }
 }

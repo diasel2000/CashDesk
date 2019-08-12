@@ -33,7 +33,7 @@
                 <tr><th>Check Id</th><th>Pozition Price</th>
                 <c:forEach var="i" items="${checks}">
                 <tr><td><c:out value="${i.id}"/></td>
-                   <td>${i.priceSum}</td>
+                   <td>${i.priceSum}$</td>
 
                     </c:forEach>
             </table>
