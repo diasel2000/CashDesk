@@ -21,9 +21,6 @@ public class JDBCProductDAO implements ProductDAO {
 
     @Override
     public void create(String productName,String code,BigDecimal price) throws SQLException {
-//        String productName = product.getProductName();
-//        BigDecimal price = product.getPrice();
-//        int code = product.getCode();
         PreparedStatement stmt = connection.prepareStatement(
                 "INSERT INTO product (product_name, price, code)" +
                         " VALUES (?, ?, ?)");
@@ -41,10 +38,10 @@ public class JDBCProductDAO implements ProductDAO {
     }
 
     @Override
-    public Product findByCode(int code) throws SQLException {
+    public Product findById(String code) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "select * from product where code = (?)");
-        stmt.setInt(1, code);
+        stmt.setString (1, code);
         ResultSet rs = stmt.executeQuery();
         ProductMaper productMapper = new ProductMaper();
 
@@ -76,31 +73,14 @@ public class JDBCProductDAO implements ProductDAO {
     }
 
     @Override
-    public void update(Product product) throws SQLException {
-        int id_product = product.getId();
-        String productName = product.getProductName();
-        BigDecimal price = product.getPrice();
-        String code = product.getCode();
-        PreparedStatement stmt = connection.prepareStatement(
-                "update product id_product = ?,product_name = ?, price = ?, code = ?" +
-                        " where id_product = ?");
-        stmt.setInt(1, id_product);
-        //stmt.setString(2, name);
-        //stmt.setBoolean(3, isSoldByWeight);
-        stmt.setString(2, productName);
-        stmt.setBigDecimal(3, price);
-        stmt.setString (4, code);
-        stmt.setInt(5, id_product);
-        stmt.executeUpdate();
+    public void update(Product product)  {
 
-        stmt.close();
-        connection.close();
     }
 
     @Override
     public void delete(String code) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "DELETE FROM product WHERE (id_product = ?);" );
+                "DELETE FROM product WHERE (code = ?);" );
         stmt.setString (1, code);
         stmt.executeUpdate();
 

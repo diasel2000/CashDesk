@@ -28,21 +28,13 @@
             <c:if test="${not empty sql_error_message}">
                 <p class="error">${sql_error_message}</p>
             </c:if>
-
             <br>
-            <br>
-            <p><h3>Check id: ${check.id}, total price: ${check.totalPrice}, time created: ${check.createTime}</h3></p>
-            <br>
-            <h2>
-                The products: <br/>
-            </h2>
-
             <table>
-                <tr><th>Code</th><th>Name</th><th>Price</th><th>Check</th></tr>
-                <c:forEach var="i" items="${products}">
-                <tr><td><c:out value="${i.code}"/></td>
-                    <td>${i.name}</td><td>${i.price}</td>
-                    <td>${i.check.id}</td>
+                <tr><th>Check Id</th><th>Pozition Price</th>
+                <c:forEach var="i" items="${checks}">
+                <tr><td><c:out value="${i.id}"/></td>
+                   <td>${i.priceSum}</td>
+
                     </c:forEach>
             </table>
             <br/>

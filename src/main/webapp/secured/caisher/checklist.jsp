@@ -30,15 +30,14 @@
             </c:if>
             <table>
                 <tr>
-                    <th>Id</th>
+                    <th>Header</th>
                     <th>Total price</th>
                 </tr>
-                <c:forEach var="i" items="${checks}">
                 <tr>
-                    <td><a href="check?id=<c:out value='${i.id}' />"> <c:out value="${i.id}"/></a></td>
-                    <td>${i.price_sum}</td>
+                    <td>Purchase amount</td>
+                    <td> <c:out value="${summ}" /></td>
                 </tr>
-                </c:forEach>
+
             </table>
             <br>
             <br>

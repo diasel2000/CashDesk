@@ -1,5 +1,6 @@
 package cashdesk.model.dao.mapper;
 
+import cashdesk.model.entity.Check;
 import cashdesk.model.entity.Product;
 
 import java.sql.ResultSet;
@@ -21,4 +22,14 @@ public class ProductMaper implements Mapper<Product> {
         cache.putIfAbsent(product.getCode(), product);
         return cache.get(product.getCode());
     }
+
+//    public Product extractForCheck(ResultSet rs) throws SQLException {
+//        Product product = new Product();
+//        product.setCode(rs.getString ("code"));
+//        product.setProductName (rs.getString("name"));
+//        product.setPrice(rs.getBigDecimal ("price"));
+//        Check check = new Check();
+//        check.setId(rs.getInt("check_id"));
+//        return product;
+//    }
 }

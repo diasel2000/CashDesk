@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product {
-    private Integer id;
+    private int id;
     private String code;
     private String productName;
     private BigDecimal price;
@@ -20,7 +20,7 @@ public class Product {
 
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

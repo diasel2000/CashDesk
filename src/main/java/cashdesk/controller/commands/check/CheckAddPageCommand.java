@@ -24,29 +24,13 @@ public class CheckAddPageCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sortBy = request.getParameter("tosort");
-        if(sortBy==null) {
-            getAllProducts(request, response);
-        }
-        else{
-            try {
-                List<Product> products = productService.getProducts (sortBy);
+        try {
+                List<Product> products = productService.getAllProducts ();
                 request.setAttribute("products", products);
             } catch (SQLException e) {
                 LOGGER.debug("Database error when requesting products");
                 request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
             }
-            //forward(request, response, Path.CASHIER_PRODUCT_LIST);
+            forward(request, response, "/secured/caisher/checklist.jsp");
         }
-    }
-
-    void getAllProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<Product> products = productService.getAllProducts();
-            request.setAttribute("products", products);
-        } catch (SQLException e) {
-            LOGGER.debug("Database error when requesting products");
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
-        }
-    }
 }

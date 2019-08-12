@@ -62,7 +62,7 @@
                          </tr>
                          <tr>
                            <td>
-                               <input id="first-name" class="input100" type="text" name="code" value="${product.code}" placeholder="product code">
+                               <input id="first-name" class="input100" type="text" name="code"  placeholder="product code">
                                <c:if test="${not empty code_error_message}">
                                    <p class="error">${code_error_message}</p>
                                </c:if>

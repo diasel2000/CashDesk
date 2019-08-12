@@ -9,11 +9,12 @@ import java.util.List;
 
 public interface ProductDAO extends GenericDAO<Product> {
 
-    Product findByCode(int id) throws SQLException;
+    Product findById(String id) throws SQLException;
 
     List<Product> findAll() throws SQLException;
 
     void update(Product product) throws SQLException;
 
     void create(String productName,String code,BigDecimal price) throws SQLException;
+
 }

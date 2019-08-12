@@ -7,7 +7,7 @@ public interface GenericDAO<T> extends AutoCloseable {
 
     void create(T entity) throws SQLException;
 
-    T findByCode(int id) throws SQLException;
+    T findById(String id) throws SQLException;
 
     List<T> findAll() throws SQLException;
 

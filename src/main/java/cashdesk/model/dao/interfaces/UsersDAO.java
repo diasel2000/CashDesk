@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface UsersDAO extends GenericDAO<Users> {
 
-    Users findByCode(int id) throws SQLException;
+    Users findById(String id) throws SQLException;
 
     List<Users> findAll() throws SQLException;
 

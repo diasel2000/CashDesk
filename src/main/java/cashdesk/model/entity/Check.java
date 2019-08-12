@@ -6,14 +6,12 @@ import java.util.Objects;
 
 public class Check {
     private int id;
-    private int quantity;
     private BigDecimal priceSum;
     private List<Product> products;
-    private int productId;
+    private String productId;
 
-    public Check(int id, int quantity, BigDecimal priceSum, List<Product> products, int productId) {
+    public Check(int id, BigDecimal priceSum, List<Product> products, String productId) {
         this.id = id;
-        this.quantity = quantity;
         this.priceSum = priceSum;
         this.products = products;
         this.productId = productId;
@@ -29,14 +27,6 @@ public class Check {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public BigDecimal getPriceSum() {
@@ -55,11 +45,11 @@ public class Check {
         this.products = products;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -69,7 +59,6 @@ public class Check {
         if (o == null || getClass() != o.getClass()) return false;
         Check check = (Check) o;
         return id == check.id &&
-                quantity == check.quantity &&
                 productId == check.productId &&
                 Objects.equals(priceSum, check.priceSum) &&
                 Objects.equals(products, check.products);
@@ -77,14 +66,13 @@ public class Check {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, priceSum, products, productId);
+        return Objects.hash(id, priceSum, products, productId);
     }
 
     @Override
     public String toString() {
         return "Check{" +
                 "id=" + id +
-                ", quantity=" + quantity +
                 ", priceSum=" + priceSum +
                 ", products=" + products +
                 ", productId=" + productId +

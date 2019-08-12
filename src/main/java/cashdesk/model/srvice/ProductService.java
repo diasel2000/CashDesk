@@ -23,9 +23,9 @@ public class ProductService {
         }
     }
 
-    public Product getProductById(int id) throws SQLException {
+    public Product getProductById(String id) throws SQLException {
         try (ProductDAO dao = daoFactory.createProductDao()) {
-            return dao.findByCode (id);
+            return dao.findById (id);
         }
     }
     public void create(String code, String name, BigDecimal price) throws SQLException {
@@ -33,11 +33,7 @@ public class ProductService {
             productDao.create(name,code,price);
 
     }
-    public void addProduct(int code, String name, boolean isSoldByWeight, int number, long weight, long price) throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            //productDao= productDao.create();
-        }
-    }
+
 
 
 
@@ -53,10 +49,5 @@ public class ProductService {
         }
     }
 
-    public List<Product> getProducts(String sortBy) throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            List<Product> products = productDao.findAll();
-            return products;
-        }
-    }
+
 }

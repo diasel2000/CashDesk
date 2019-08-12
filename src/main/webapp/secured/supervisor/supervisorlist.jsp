@@ -42,7 +42,7 @@
                         <th>${i.price}</th>
                     </tr>
                 </c:forEach>
-                <form action="${pageContext.request.contextPath}supervisor/deleteProduct?dcode=${i.code}" method="post">
+                <form action="${pageContext.request.contextPath}/key/supervisor/deleteProduct" method="post">
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" >
                             Delete

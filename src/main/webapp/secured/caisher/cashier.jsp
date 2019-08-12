@@ -48,32 +48,29 @@
           <div class="row">
 
               <h2>
-                  List Products <br/>
+                  Add product in Check <br/>
               </h2>
-              <button id="btn1">Append text</button>
               <c:if test="${not empty sql_error_message}">
                   <p class="error">${sql_error_message}</p>
               </c:if>
-              <table id="prodtable">
-                  <tr><th>Id</th><th>Name</th><th>Price</th>
-                      <th>Total number</th>
+              <form action="${pageContext.request.contextPath}/key/caisher/checks/add">
+              <table>
+                  <tr>
+                      <th>Product Code</th>
+                      <th>Count</th>
                   </tr>
-                  <c:forEach var="i" items="${products}">
-                  <tr><td class="id_product"><a href="product?id=<c:out value='${i.id_product}'/>"><c:out value="${i.id_product}"/></a></td>
-                      <td class="name">${i.name}</td>
-                      <td class="price">${i.price}</td>
-                      <td class="numberInput"><input type="number"></td>
+                  <tr>
+                      <th><input id="first-name" class="input100" type="text" name="cod" placeholder="Code"></th>
+                      <th><input id="first-name" class="input100" type="number" name="quant" placeholder="Count" ></th>
                       <td>
-                          <button class="addbutton" id="btn1">Add to check</button>
+                          <div class="container-login100-form-btn">
+                              <button class="login100-form-btn" id="btn1">Add to check</button>
+                          </div>
                       </td>
-                      </c:forEach>
+                  </tr>
               </table>
-              <br>
-              <p>Add check:</p> <br>
-
-              <form class="addToCheck" action="${pageContext.request.contextPath}/key/cashier/checks/add" method="post">
-                  <input type="submit" value="Close check"/>
               </form>
+
               <br>
           </div>
      </div>

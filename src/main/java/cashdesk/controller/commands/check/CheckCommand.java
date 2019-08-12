@@ -22,8 +22,7 @@ public class CheckCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sid = request.getParameter("id");
-        int id = Integer.parseInt(sid);
+        String id = request.getParameter("id");
         try {
             Check check = checkService.getCheckById(id);
             request.setAttribute("check", check);

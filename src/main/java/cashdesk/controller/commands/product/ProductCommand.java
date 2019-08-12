@@ -22,8 +22,8 @@ public class ProductCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sid = request.getParameter("id_product");
-        int code = Integer.parseInt(sid);
+        String code = request.getParameter("id_product");
+
         try {
             Product product = productService.getProductById(code);
             request.setAttribute("product", product);

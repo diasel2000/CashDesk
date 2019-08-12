@@ -8,10 +8,7 @@ import cashdesk.model.entity.Product;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JDBCCheckDAO implements CheckDAO {
     private Connection connection;
@@ -25,17 +22,15 @@ public class JDBCCheckDAO implements CheckDAO {
     public void create(Check check) throws SQLException {
         int id = check.getId();
         BigDecimal totalPrice = check.getPriceSum();
-        int productQuantitu = check.getQuantity();
-        int productId = check.getProductId();
+        String productId = check.getProductId();
 
         connection.setAutoCommit(false);
         PreparedStatement stmt = connection.prepareStatement(
-                "insert into check (id_check, total_price, cashier_id, shift_id, create_time)" +
-                        " values (?, ?, ?, ?, ?)");
+                "insert into check (id_check, price_sum, product_id)" +
+                        " values (?, ?, ?)");
         stmt.setInt(1, id);
         stmt.setBigDecimal(2, totalPrice);
-        stmt.setInt(3, productQuantitu);
-        stmt.setInt(4, productId);
+        stmt.setString(3, productId);
         stmt.addBatch();
         stmt.executeBatch();
         stmt = connection.prepareStatement(
@@ -50,53 +45,69 @@ public class JDBCCheckDAO implements CheckDAO {
         }
         stmt.executeBatch();
         connection.commit();
-        connection.setAutoCommit(true);
+        connection.setAutoCommit ( true );
         stmt.close();
         connection.close();
     }
 
+
     @Override
-    public Check findByCode(int id) throws SQLException {
+    public Check findById(String id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "select * from check" +
-                        " where check.id_check = (?) ");
-        stmt.setInt(1, id);
+                "select * from check where id_check = (?)");
+        stmt.setString (1, id);
         ResultSet rs = stmt.executeQuery();
-        CheckMaper checkMapper = new CheckMaper();
-
+        CheckMaper checkMaper = new CheckMaper ();
         rs.next();
-        Check check = checkMapper.getEntity(rs);
-
-        List<Product> products = new ArrayList<>();
-        ProductMaper productMapper = new ProductMaper();
-        do {
-            Product product = productMapper.getEntity(rs);
-            products.add(product);
-        }
-        while(rs.next());
-        check.setProducts(products);
+        Check check = checkMaper.getEntity(rs);
 
         stmt.close();
         connection.close();
+
         return check;
     }
 
     @Override
     public List<Check> findAll() throws SQLException {
         Map<Integer, Check> checks = new HashMap<>();
-        final String query = "select id_check, product_quantity, price_sum from check";
+
+        final String query = " select * from `check`";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(query);
-
         CheckMaper checkMapper = new CheckMaper();
-
-
+        while (rs.next()) {
+            Check check = checkMapper
+                    .getEntity (rs);
+            checkMapper
+                    .mapChecks (checks, check);
+        }
         return new ArrayList<>(checks.values());
     }
 
     @Override
     public void update(Check check) {
 
+    }
+    @Override
+    public BigDecimal getSum() throws SQLException {
+        PreparedStatement statement =  connection.prepareStatement("select sum(price_sum) from `cash desk`.`check`;");
+        ResultSet rs = statement.executeQuery();
+        rs.next();
+        BigDecimal summ = rs.getBigDecimal (1);
+        statement.close ();
+        connection.close ();
+            return summ;
+    }
+
+    @Override
+    public void addCheck(String id_product,BigDecimal sum_price) throws SQLException {
+        final String query ="INSERT INTO `cash desk`.`check` (`price_sum`, `product_code`) VALUES (?, ?);";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setBigDecimal (1, sum_price );
+        stmt.setString (2,id_product);
+        stmt.executeUpdate();
+        stmt.close();
+        connection.close();
     }
 
     @Override

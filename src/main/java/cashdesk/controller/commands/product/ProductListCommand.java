@@ -27,7 +27,7 @@ public class ProductListCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Product> products = productService.getAllProducts ();
         request.setAttribute ( "products",products );
-        forward(request, response, "/secured/supervisor/supervisorlist.jsp");
+        forward(request, response, "/secured/supervisor/supervisor.jsp");
     }
 }
 

@@ -41,13 +41,12 @@ public class Servlet extends HttpServlet {
         commands.put("supervisor/product", new ProductCommand(new ProductService()));
         commands.put("supervisor/products", new ProductListCommand(new ProductService()));
         commands.put("supervisor/addProduct", new AddProductCommand(new ProductService()));
-        commands.put("supervisor/editProduct", new EditProductCommand(new ProductService()));
+        //commands.put("supervisor/editProduct", new EditProductCommand(new ProductService()));
         commands.put("supervisor/deleteProduct", new DeleteProductCommand(new ProductService()));
         commands.put("users-login", new LoginUsersCommand(new UserService()));
         commands.put("logout", new LogoutUsersCommand());
         commands.put("users-register", new RegisterUsersCommand(new UserService()));
-        commands.put("exception", new ExceptionCommand());
-        commands.put("caisher/check", new CheckCommand(new CheckService()));
+        //commands.put("caisher/check", new CheckCommand(new CheckService()));
         commands.put("caisher/checks", new CheckListCommand(new CheckService()));
         commands.put("caisher/checks/addPage", new CheckAddPageCommand(new ProductService()));
         commands.put("caisher/checks/add", new AddCheckCommand(new CheckService()));

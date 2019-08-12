@@ -51,10 +51,10 @@ public class JDBCUserDAO implements UsersDAO {
     }
 
     @Override
-    public Users findByCode(int id) throws SQLException {
+    public Users findById(String id) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "select * from users where id_users = (?)");
-        stmt.setInt(1, id);
+        stmt.setString (1, id);
         ResultSet resultSet = stmt.executeQuery();
         UserMaper userMapper = new UserMaper();
         resultSet.next();
