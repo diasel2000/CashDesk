@@ -135,7 +135,9 @@ public class JDBCUserDAO implements UsersDAO {
         }
     }
 
-    public void register(String login, String pass, String role) throws SQLException {
+    public void register(String login, String pass, String role,String name)  {
+        try {
+            connection.setAutoCommit(false);
 
         PreparedStatement stmt = connection.prepareStatement(
                 "INSERT INTO users (user_login, user_pass, user_role) VALUES (?, ?, ?);");
@@ -143,8 +145,38 @@ public class JDBCUserDAO implements UsersDAO {
         stmt.setString(2, pass);
         stmt.setString(3, role);
         stmt.executeUpdate();
+
+        if (role.equals ( "seniorCaisher" )) {
+            PreparedStatement stmtSenior = connection.prepareStatement(
+                    "INSERT INTO senior_caisher (id_scaisher,senior_caisher_name) VALUES (LAST_INSERT_ID(),?);");
+            stmtSenior.setString ( 1,name );
+            stmtSenior.executeUpdate ();
+        }else
+            if (role.equals ( "supervisor" )) {
+                PreparedStatement stmtSuper = connection.prepareStatement(
+                        "INSERT INTO supervisor (id_supervisor,supervisor_name) VALUES (LAST_INSERT_ID(),?);");
+                stmtSuper.setString ( 1,name );
+                stmtSuper.executeUpdate ();
+            }else
+                if (role.equals ( "caisher" )) {
+                    PreparedStatement stmtCash = connection.prepareStatement(
+                            "INSERT INTO caisher (id_caisher,caisher_name) VALUES (LAST_INSERT_ID(),?);");
+                    stmtCash.setString ( 1,name );
+                    stmtCash.executeUpdate ();
+            }else
+
+        connection.commit();
+        connection.setAutoCommit ( true );
         stmt.close();
         connection.close();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace ();
+            }
+            e.printStackTrace ();
+        }
     }
 
     @Override

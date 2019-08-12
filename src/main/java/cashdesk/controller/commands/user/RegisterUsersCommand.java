@@ -26,6 +26,7 @@ public class RegisterUsersCommand implements Command {
         String username = request.getParameter("username");
         String pass = request.getParameter("pass");
         String role = request.getParameter("role");
+        String lastUserName = request.getParameter ( "lastusername" );
         String newPass = MD5.MD5 ( pass );
         if (username == null || username.equals("")) {
             request.setAttribute("username_error_message", "Put in the username");
@@ -58,7 +59,7 @@ public class RegisterUsersCommand implements Command {
             return;
         }
         try {
-            userService.register(username,  newPass, role);
+            userService.register(username,  newPass, role,lastUserName);
         } catch (SQLException e) {
             LOGGER.debug("Database error when registering user "+ username);
             request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());

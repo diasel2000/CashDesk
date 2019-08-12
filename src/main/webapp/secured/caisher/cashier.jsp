@@ -47,61 +47,56 @@
      <div class="container">
           <div class="row">
 
-               <div class="" data-wow-delay="0.2s">
-                    <!-- SECTION TITLE -->
-                    <h2>Add product in check</h2>
-               </div>
-               <form class="login100-form validate-form">
-                    <table>
-                         <tr>
-                           <th>Code</th>
-                           <th>Product</th>
-                           <th>Count</th>
-                           <th>Price</th>
-                         </tr>
-                         <tr>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product code"></td>
-                           <td><input id="first-name" class="input100" type="text" name="username" placeholder="product name"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="count"></td>
-                           <td><input id="first-name" class="input100" type="number" name="username" placeholder="price"></td>
-                         </tr>
-                         <tr>
-                           <th><div class="container-login100-form-btn">
-                              <button class="login100-form-btn">
-                                   Add prouct
-                              </button>
-                         </div></th>
-                         </tr>
-                    </table>
-               </form>
+              <h2>
+                  List Products <br/>
+              </h2>
+              <button id="btn1">Append text</button>
+              <c:if test="${not empty sql_error_message}">
+                  <p class="error">${sql_error_message}</p>
+              </c:if>
+              <table id="prodtable">
+                  <tr><th>Id</th><th>Name</th><th>Price</th>
+                      <th>Total number</th>
+                  </tr>
+                  <c:forEach var="i" items="${products}">
+                  <tr><td class="id_product"><a href="product?id=<c:out value='${i.id_product}'/>"><c:out value="${i.id_product}"/></a></td>
+                      <td class="name">${i.name}</td>
+                      <td class="price">${i.price}</td>
+                      <td class="numberInput"><input type="number"></td>
+                      <td>
+                          <button class="addbutton" id="btn1">Add to check</button>
+                      </td>
+                      </c:forEach>
+              </table>
+              <br>
+              <p>Add check:</p> <br>
 
-
-
-              <%--<form action="${pageContext.request.contextPath}/api/manager/editProduct" method="post">--%>
-                  <%--Code <input type="number" name="code" value="${product.code}" readonly/><br>--%>
-                  <%--<c:if test="${not empty code_error_message}">--%>
-                      <%--<p class="error">${code_error_message}</p>--%>
-                  <%--</c:if>--%>
-                  <%--Name <input type="text" name="name" value="${product.name}" readonly/><br>--%>
-                  <%--Sold by Weight: ${product.soldByWeight}<br>--%>
-                  <%--<input type="hidden" name="soldByWeight" value="${product.soldByWeight}"/>--%>
-                  <%--Number in stock <input type="number" name="number" value="${product.number}"/><br>--%>
-                  <%--<c:if test="${not empty number_error_message}">--%>
-                      <%--<p class="error">${number_error_message}</p>--%>
-                  <%--</c:if>--%>
-                  <%--Total weight in stock <input type="number" name="weight" value="${product.weight}"/><br>--%>
-                  <%--<c:if test="${not empty weight_error_message}">--%>
-                      <%--<p class="error">${weight_error_message}</p>--%>
-                  <%--</c:if>--%>
-                  <%--Price per unit or kilo <input type="number" name="price" value="${product.price}"/><br>--%>
-                  <%--<c:if test="${not empty price_error_message}">--%>
-                      <%--<p class="error">${price_error_message}</p>--%>
-                  <%--</c:if>--%>
-                  <%--<input type="submit">--%>
-              <%--</form>--%>
+              <form class="addToCheck" action="${pageContext.request.contextPath}/key/cashier/checks/add" method="post">
+                  <input type="submit" value="Close check"/>
+              </form>
+              <br>
           </div>
      </div>
 </section>
+
+
+<section id="service" class="parallax-section">
+    <div class="container">
+        <div class="row">
+            <jsp:include page="check.jsp"></jsp:include>
+        </div>
+    </div>
+</section>
+
+<section id="service" class="parallax-section">
+    <div class="container">
+        <div class="row">
+            <jsp:include page="checklist.jsp"></jsp:include>
+        </div>
+    </div>
+</section>
+
+
 
 <!-- FOOTER SECTION -->
 <footer>

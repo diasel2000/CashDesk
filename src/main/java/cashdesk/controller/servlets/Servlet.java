@@ -47,10 +47,10 @@ public class Servlet extends HttpServlet {
         commands.put("logout", new LogoutUsersCommand());
         commands.put("users-register", new RegisterUsersCommand(new UserService()));
         commands.put("exception", new ExceptionCommand());
-        commands.put("cashier/check", new CheckCommand(new CheckService()));
-        commands.put("cashier/checks", new CheckListCommand(new CheckService()));
-        commands.put("cashier/checks/addPage", new CheckAddPageCommand(new ProductService()));
-        commands.put("cashier/checks/add", new AddCheckCommand(new CheckService()));
+        commands.put("caisher/check", new CheckCommand(new CheckService()));
+        commands.put("caisher/checks", new CheckListCommand(new CheckService()));
+        commands.put("caisher/checks/addPage", new CheckAddPageCommand(new ProductService()));
+        commands.put("caisher/checks/add", new AddCheckCommand(new CheckService()));
         commands.put("supervisor", new SupervisorCommand());
         commands.put("adminCaisher/users", new UserListCommand(new UserService()));
         commands.put("adminCaisher", new SeniorCaisherCommand());

@@ -17,6 +17,6 @@ public interface UsersDAO extends GenericDAO<Users> {
 
     Optional<Users> findByLogin(String login,String pass);
 
-    void register(String login, String pass, String role) throws SQLException;
+    void register(String login, String pass, String role,String name) throws SQLException;
 
 }

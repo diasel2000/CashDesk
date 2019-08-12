@@ -23,26 +23,28 @@
     <div class="container">
         <div class="row">
             <h2>
-                List Checks <br/>
+                The check <br/>
             </h2>
             <c:if test="${not empty sql_error_message}">
                 <p class="error">${sql_error_message}</p>
             </c:if>
+
+            <br>
+            <br>
+            <p><h3>Check id: ${check.id}, total price: ${check.totalPrice}, time created: ${check.createTime}</h3></p>
+            <br>
+            <h2>
+                The products: <br/>
+            </h2>
+
             <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Total price</th>
-                </tr>
-                <c:forEach var="i" items="${checks}">
-                <tr>
-                    <td><a href="check?id=<c:out value='${i.id}' />"> <c:out value="${i.id}"/></a></td>
-                    <td>${i.price_sum}</td>
-                </tr>
-                </c:forEach>
+                <tr><th>Code</th><th>Name</th><th>Price</th><th>Check</th></tr>
+                <c:forEach var="i" items="${products}">
+                <tr><td><c:out value="${i.code}"/></td>
+                    <td>${i.name}</td><td>${i.price}</td>
+                    <td>${i.check.id}</td>
+                    </c:forEach>
             </table>
-            <br>
-            <br>
-            <a href="${pageContext.request.contextPath}/key/caisher/checks/addPage">Create new check</a>
             <br/>
         </div>
     </div>

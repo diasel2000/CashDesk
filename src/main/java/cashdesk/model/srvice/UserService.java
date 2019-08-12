@@ -39,9 +39,9 @@ public class UserService {
             throw new LoginException("User with email " + login + " is not found.");
     }
 
-    public void register(String login, String pass, String role) throws SQLException {
+    public void register(String login, String pass, String role,String name) throws SQLException {
         UsersDAO userDao = daoFactory.createUserDao();
-        userDao.register(login,  pass, role);
+        userDao.register(login,  pass, role,name);
     }
 
     public void update(Users user) throws SQLException {

@@ -30,7 +30,7 @@ public class CheckAddPageCommand implements Command {
         }
         else{
             try {
-                List<Product> products = productService.getProductsSortedBy(sortBy);
+                List<Product> products = productService.getProducts (sortBy);
                 request.setAttribute("products", products);
             } catch (SQLException e) {
                 LOGGER.debug("Database error when requesting products");

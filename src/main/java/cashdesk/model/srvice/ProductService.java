@@ -53,7 +53,7 @@ public class ProductService {
         }
     }
 
-    public List<Product> getProductsSortedBy(String sortBy) throws SQLException {
+    public List<Product> getProducts(String sortBy) throws SQLException {
         try (ProductDAO productDao = daoFactory.createProductDao()) {
             List<Product> products = productDao.findAll();
             return products;

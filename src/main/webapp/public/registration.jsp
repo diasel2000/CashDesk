@@ -62,7 +62,7 @@
                               <span class="focus-input100"></span>
                          </div>
                          <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-                              <input id="first-name" class="input100" type="text" name="username" placeholder='<fmt:message key="reg.lastname" />'>
+                              <input id="first-name" class="input100" type="text" name="lastusername" placeholder='<fmt:message key="reg.lastname" />'>
                               <c:if test="${not empty username_error_message}">
                                     <p class="error">${username_error_message}</p>
                          </c:if>

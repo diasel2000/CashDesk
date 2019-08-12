@@ -31,52 +31,33 @@ public class AddCheckCommand implements Command {
         int i = 1;
 
         List<Product> products = new ArrayList<Product>();
-        int code;
-        String name;
-
-        BigDecimal price;
+        int id_product = 0;
+        String name = "";
+        BigDecimal price = null;
         int managerId;
         Users manager;
         int number;
+        Product product = new Product (  );
+        product.setId ( id_product );
+        product.setProductName ( name );
+        product.setPrice ( price );
 
 
 
-        while (request.getParameter("code" + i) != null) {
-            code = Integer.parseInt(request.getParameter("code" + i));
+        while (request.getParameter("id_product" + i) != null) {
+            id_product = Integer.parseInt(request.getParameter("id_product" + i));
             name = request.getParameter("name" + i);
             managerId = Integer.parseInt(request.getParameter("manager" + i));
             manager = new Users();
             manager.setId(managerId);
             price = BigDecimal.valueOf(Long.parseLong(request.getParameter("priceToAdd" + i)));
 
-
-
-//            Product product = new Product.Builder(code)
-//                    .productName(name)
-//                    .price(price)
-//                    .byManager(manager)
-//                    .build();
-//            if (isSoldByWeight) {
-//                weight = Long.parseLong(request.getParameter("weightToAdd" + i));
-//                product.setWeight(weight);
-//            } else {
-//                number = Integer.parseInt(request.getParameter("numberToAdd" + i));
-//                product.setNumber(number);
-//            }
-//            product.setCheck(check);
-//            products.add(product);
-//            i++;
         }
 
         check.setPriceSum(totalPrice);
-//        check.setCashierId((Users) ((HttpServletRequest) request).getSession().getAttribute("user"));
-//        Shift shift = new Shift();
-//        shift.setId(1);
-//        check.setShift(shift);
+      //  check.setCashierId((Users) ((HttpServletRequest) request).getSession().getAttribute("loggedIn"));
         check.setProducts(products);
-        Timestamp time = new Timestamp(new Date().getTime());
-//        check.setCreateTime(time);
-        check.setId(check.hashCode());
+
 
         try {
             checkService.create(check);
