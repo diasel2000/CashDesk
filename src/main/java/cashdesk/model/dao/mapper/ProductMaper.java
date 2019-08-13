@@ -6,7 +6,12 @@ import cashdesk.model.entity.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
+/**
+ * Product mapper (id,name,price,code)
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class ProductMaper implements Mapper<Product> {
     @Override
     public Product getEntity(ResultSet resultSet) throws SQLException {

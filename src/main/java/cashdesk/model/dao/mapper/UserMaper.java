@@ -7,7 +7,12 @@ import javax.xml.registry.infomodel.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
+/**
+ * User mapper(id,login,pass,role)
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class UserMaper implements Mapper<Users> {
     @Override
     public Users getEntity(ResultSet resultSet) throws SQLException {

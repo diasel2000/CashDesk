@@ -10,6 +10,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * User servises (create User DAO)
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class);

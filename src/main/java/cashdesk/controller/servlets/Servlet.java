@@ -27,6 +27,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Servlet extends from HttpServlet
+ * init HashMap for breaking servlet logic into different endpoints
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Servlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger ( LoginUsersCommand.class );
     private Map<String, Command> commands = new HashMap<> ();

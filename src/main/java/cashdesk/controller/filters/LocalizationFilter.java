@@ -3,7 +3,11 @@ package cashdesk.controller.filters;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-
+/**
+ * LocalizationFilter Filter
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class LocalizationFilter implements Filter {
     private static final String LOCALE = "locale";
     private static final String BUNDLE = "bundle";

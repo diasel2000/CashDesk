@@ -12,6 +12,11 @@ import java.util.*;
 public class JDBCUserDAO implements UsersDAO {
     private Connection connection;
 
+    /**
+     * @author Anatolii Huzov
+     * @version 1.0
+     * @param connection
+     */
     public JDBCUserDAO(Connection connection) {
         this.connection = connection;
     }

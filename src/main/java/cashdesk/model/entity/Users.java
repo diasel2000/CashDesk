@@ -2,6 +2,12 @@ package cashdesk.model.entity;
 
 import java.util.Objects;
 
+/**
+ * User entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Users {
     private Integer id;
     private String login;

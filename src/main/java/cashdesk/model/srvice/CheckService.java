@@ -9,6 +9,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Check servises (create Check DAO)
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class CheckService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 

@@ -1,7 +1,12 @@
 package cashdesk.model.entity;
 
 import java.util.Objects;
-
+/**
+ * Cashier entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Caisher {
     private int id;
     private String name;

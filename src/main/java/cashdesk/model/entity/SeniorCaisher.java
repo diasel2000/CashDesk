@@ -2,6 +2,12 @@ package cashdesk.model.entity;
 
 import java.util.Objects;
 
+/**
+ * Senior Cashier entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class SeniorCaisher {
     private int id;
     private String name;

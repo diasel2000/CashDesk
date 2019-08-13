@@ -3,6 +3,12 @@ package cashdesk.model.entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+/**
+ * Product entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Product {
     private int id;
     private String code;

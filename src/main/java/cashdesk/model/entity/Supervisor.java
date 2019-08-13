@@ -2,6 +2,12 @@ package cashdesk.model.entity;
 
 import java.util.Objects;
 
+/**
+ * Supervisor entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Supervisor {
     private int id;
     private String name;

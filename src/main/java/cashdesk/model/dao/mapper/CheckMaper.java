@@ -5,7 +5,12 @@ import cashdesk.model.entity.Check;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
+/**
+ * Check mapper (id, total price, product code)
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class CheckMaper implements Mapper<Check> {
     @Override
     public Check getEntity(ResultSet resultSet) throws SQLException {

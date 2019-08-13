@@ -3,6 +3,12 @@ package cashdesk.utils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+/**
+ *verify Login, Password, Number, Code Regex
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Regex {
     private static final Logger LOGGER = LogManager.getLogger(Regex.class.getName());
 

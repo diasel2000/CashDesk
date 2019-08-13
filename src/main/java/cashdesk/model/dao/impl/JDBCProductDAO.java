@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class JDBCProductDAO implements ProductDAO {
     private Connection connection;
 

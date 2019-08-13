@@ -3,7 +3,12 @@ package cashdesk.model.entity;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * Check entity
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class Check {
     private int id;
     private BigDecimal priceSum;

@@ -5,6 +5,12 @@ import org.apache.log4j.Logger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Make MD5 hashing, using for passwords
+ *
+ * @author Anatolii Huzov
+ * @version 1.0
+ */
 public class MD5 {
     private static MessageDigest md;
     private static final Logger LOGGER = Logger.getLogger(MD5.class);
