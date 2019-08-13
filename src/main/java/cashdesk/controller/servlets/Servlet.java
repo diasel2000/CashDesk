@@ -30,6 +30,7 @@ import java.util.Map;
 /**
  * Servlet extends from HttpServlet
  * init HashMap for breaking servlet logic into different endpoints
+ *
  * @author Anatolii Huzov
  * @version 1.0
  */

@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
 /**
  * Login Filter
+ *
  * @author Anatolii Huzov
  * @version 1.0
  */
@@ -22,11 +24,11 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession(false);
-        if ((session == null || session.getAttribute("loggedIn") == null)) {
-            response.sendRedirect(request.getContextPath() + "/public/login.jsp");
+        HttpSession session = request.getSession ( false );
+        if ((session == null || session.getAttribute ( "loggedIn" ) == null)) {
+            response.sendRedirect ( request.getContextPath () + "/public/login.jsp" );
         } else {
-            filterChain.doFilter(request, response);
+            filterChain.doFilter ( request, response );
         }
     }
 

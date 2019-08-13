@@ -16,14 +16,14 @@ import java.util.Map;
  * @version 1.0
  */
 public class CheckService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    DaoFactory daoFactory = DaoFactory.getInstance ();
 
     public List<Check> getAllChecks() throws SQLException {
-        try (CheckDAO checkDao = daoFactory.createCheckDao()) {
+        try (CheckDAO checkDao = daoFactory.createCheckDao ()) {
             try {
-                return checkDao.findAll();
+                return checkDao.findAll ();
             } catch (SQLException e) {
-                e.printStackTrace();
+                e.printStackTrace ();
                 return null;
             }
         }
@@ -31,31 +31,31 @@ public class CheckService {
 
     public BigDecimal getSumm() throws SQLException {
         try (CheckDAO checkDAO = daoFactory.createCheckDao ()) {
-           return checkDAO.getSum ();
+            return checkDAO.getSum ();
         }
     }
 
     public void create(Check check) throws SQLException {
-        try (CheckDAO checkDao = daoFactory.createCheckDao()) {
-            checkDao.create(check);
+        try (CheckDAO checkDao = daoFactory.createCheckDao ()) {
+            checkDao.create ( check );
         }
     }
-
 
 
     public Check getCheckById(String code) throws SQLException {
-        try (CheckDAO dao = daoFactory.createCheckDao()) {
-            return dao.findById (code);
+        try (CheckDAO dao = daoFactory.createCheckDao ()) {
+            return dao.findById ( code );
         }
     }
 
-    public void addCheck(String id_product,BigDecimal sum_price) throws SQLException {
-        try(CheckDAO checkDAO = daoFactory.createCheckDao ()) {
-            checkDAO.addCheck( id_product, sum_price);
+    public void addCheck(String id_product, BigDecimal sum_price) throws SQLException {
+        try (CheckDAO checkDAO = daoFactory.createCheckDao ()) {
+            checkDAO.addCheck ( id_product, sum_price );
         }
     }
+
     public void delete(String id) throws SQLException {
-        try (CheckDAO checkDAO = daoFactory.createCheckDao ()){
+        try (CheckDAO checkDAO = daoFactory.createCheckDao ()) {
             checkDAO.delete ( id );
         }
     }

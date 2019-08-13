@@ -12,24 +12,24 @@ import static cashdesk.model.dao.impl.DBConnectionPool.getConnection;
 
 
 public class JDBCDaoFactory extends DaoFactory {
-    private static final Logger LOG = Logger.getLogger(JDBCDaoFactory.class);
+    private static final Logger LOG = Logger.getLogger ( JDBCDaoFactory.class );
 
     @Override
     public UsersDAO createUserDao() throws SQLException {
-        return new JDBCUserDAO(getConnection());
+        return new JDBCUserDAO ( getConnection () );
     }
 
     @Override
     public ProductDAO createProductDao() throws SQLException {
-        return new JDBCProductDAO(getConnection());
+        return new JDBCProductDAO ( getConnection () );
     }
 
     @Override
     public CheckDAO createCheckDao() throws SQLException {
-        return new JDBCCheckDAO(getConnection());
+        return new JDBCCheckDAO ( getConnection () );
     }
 
-    @Override
+   /* @Override
     public CaisherDAO createCaisherDao() {
         return null;
     }
@@ -42,15 +42,5 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public SupervisorDAO createSupervisorDao() {
         return null;
-    }
-
-//    private Connection getConnection() {
-//        try {
-//            LOG.debug("getConnection: " + dataSource);
-//            return dataSource.getConnection();
-//        } catch (SQLException e) {
-//            LOG.debug("SQLException occurred", e);
-//            throw new RuntimeException(e);
-//        }
-//    }
+    }*/
 }

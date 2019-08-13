@@ -20,25 +20,25 @@ public class AddUsersCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String role = request.getParameter("role");
-        String sid = request.getParameter("id_user");
-        int id = Integer.parseInt(sid);
-        Users user = new Users();
-        user.setId(id);
-        user.setRole(role);
-        Users loggedUser = (Users) ((HttpServletRequest) request).getSession().getAttribute("user");
-        if(id==loggedUser.getId()){
-            request.setAttribute("self_error_message", "You cannot change your own role");
-            UserListCommand listCommand = new UserListCommand(userService);
-            listCommand.execute(request, response);
+        String role = request.getParameter ( "role" );
+        String sid = request.getParameter ( "id_user" );
+        int id = Integer.parseInt ( sid );
+        Users user = new Users ();
+        user.setId ( id );
+        user.setRole ( role );
+        Users loggedUser = (Users) ((HttpServletRequest) request).getSession ().getAttribute ( "user" );
+        if (id == loggedUser.getId ()) {
+            request.setAttribute ( "self_error_message", "You cannot change your own role" );
+            UserListCommand listCommand = new UserListCommand ( userService );
+            listCommand.execute ( request, response );
             return;
         }
         try {
-            userService.update(user);
+            userService.update ( user );
         } catch (SQLException e) {
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
-            UserListCommand listCommand = new UserListCommand(userService);
-            listCommand.execute(request, response);
+            request.setAttribute ( "sql_error_message", "Database problem: " + e.getMessage () );
+            UserListCommand listCommand = new UserListCommand ( userService );
+            listCommand.execute ( request, response );
             return;
         }
     }

@@ -18,19 +18,20 @@ public class CheckCommand implements Command {
     public CheckCommand(CheckService checkService) {
         this.checkService = checkService;
     }
-    private static final Logger LOGGER = LogManager.getLogger(CheckCommand.class);
+
+    private static final Logger LOGGER = LogManager.getLogger ( CheckCommand.class );
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String id = request.getParameter ( "id" );
         try {
-            Check check = checkService.getCheckById(id);
-            request.setAttribute("check", check);
-            request.setAttribute("products", check.getProducts());
-            System.out.println(check.getProducts());
+            Check check = checkService.getCheckById ( id );
+            request.setAttribute ( "check", check );
+            request.setAttribute ( "products", check.getProducts () );
+            System.out.println ( check.getProducts () );
         } catch (SQLException e) {
-            LOGGER.debug("Database error when requesting check {}"+id);
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
+            LOGGER.debug ( "Database error when requesting check {}" + id );
+            request.setAttribute ( "sql_error_message", "Database problem: " + e.getMessage () );
         }
     }
 }

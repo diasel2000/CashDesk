@@ -19,5 +19,5 @@ public interface CheckDAO extends GenericDAO<Check> {
 
     BigDecimal getSum() throws SQLException;
 
-    void addCheck(String id_product,BigDecimal sum_price) throws SQLException;
+    void addCheck(String id_product, BigDecimal sum_price) throws SQLException;
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * Product entity
+ * Product entitys
  *
  * @author Anatolii Huzov
  * @version 1.0

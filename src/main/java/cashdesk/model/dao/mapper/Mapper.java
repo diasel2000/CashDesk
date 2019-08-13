@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 /**
  * generic interface for mappers
+ *
  * @param <T>
  */
 public interface Mapper<T> {

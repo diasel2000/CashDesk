@@ -17,11 +17,11 @@ public class SeniorCaisherCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        HttpSession ses=request.getSession(false);
-        if(ses.getAttribute("loggedIn") != null) {
+        HttpSession ses = request.getSession ( false );
+        if (ses.getAttribute ( "loggedIn" ) != null) {
             forward ( request, response, "/secured/seniorcaisher/seniorcashier.jsp" );
 
-        }else forward ( request, response, "/public/login.jsp" );
+        } else forward ( request, response, "/public/login.jsp" );
     }
 
 }

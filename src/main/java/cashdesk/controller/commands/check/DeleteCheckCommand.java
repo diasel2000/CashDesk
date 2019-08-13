@@ -19,15 +19,15 @@ public class DeleteCheckCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
-        String code =  request.getParameter("id_check") ;
+        String code = request.getParameter ( "id_check" );
 
         try {
-            checkService.delete(code);
-            request.setAttribute ( "summ",checkService.getSumm () );
-            forward ( request,response,"/secured/seniorcaisher/seniorcashier.jsp" );
+            checkService.delete ( code );
+            request.setAttribute ( "summ", checkService.getSumm () );
+            forward ( request, response, "/secured/seniorcaisher/seniorcashier.jsp" );
         } catch (SQLException e) {
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
-            forward ( request,response,"/secured/seniorcaisher/seniorcashier.jsp" );
+            request.setAttribute ( "sql_error_message", "Database problem: " + e.getMessage () );
+            forward ( request, response, "/secured/seniorcaisher/seniorcashier.jsp" );
             return;
         }
     }

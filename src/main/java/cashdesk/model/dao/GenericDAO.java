@@ -2,6 +2,7 @@ package cashdesk.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
 /**
  * Generic DAO interface
  *

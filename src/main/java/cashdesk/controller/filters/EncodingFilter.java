@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * Encoding Filter
+ *
  * @author Anatolii Huzov
  * @version 1.0
  */

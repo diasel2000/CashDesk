@@ -20,10 +20,10 @@ public class CheckListCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        List<Check> checks = checkService.getAllChecks();
-        System.out.println (checks);
-        request.setAttribute("checks" , checks);
-        request.setAttribute ( "summ",checkService.getSumm () );
-        forward ( request,response, "/secured/caisher/cashier.jsp" );
+        List<Check> checks = checkService.getAllChecks ();
+        System.out.println ( checks );
+        request.setAttribute ( "checks", checks );
+        request.setAttribute ( "summ", checkService.getSumm () );
+        forward ( request, response, "/secured/caisher/cashier.jsp" );
     }
 }

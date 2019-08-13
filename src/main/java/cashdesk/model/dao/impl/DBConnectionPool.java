@@ -13,7 +13,7 @@ public class DBConnectionPool {
 
     static {
         dataSource.setUrl ( "jdbc:mysql://127.0.0.1/cash desk?serverTimezone=UTC" );
-        dataSource.setUsername ( "root" );
+        dataSource.setUsername ( "root");
         dataSource.setPassword ( "3420683890015tolik" );
         dataSource.setMinIdle ( 5 );
         dataSource.setMaxIdle ( 10 );

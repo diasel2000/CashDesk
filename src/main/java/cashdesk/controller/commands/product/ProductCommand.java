@@ -18,18 +18,19 @@ public class ProductCommand implements Command {
     public ProductCommand(ProductService productService) {
         this.productService = productService;
     }
-    private static final Logger LOGGER = LogManager.getLogger(ProductCommand.class);
+
+    private static final Logger LOGGER = LogManager.getLogger ( ProductCommand.class );
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String code = request.getParameter("id_product");
+        String code = request.getParameter ( "id_product" );
 
         try {
-            Product product = productService.getProductById(code);
-            request.setAttribute("product", product);
+            Product product = productService.getProductById ( code );
+            request.setAttribute ( "product", product );
         } catch (SQLException e) {
-            LOGGER.debug("Database error when requesting product "+code);
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
+            LOGGER.debug ( "Database error when requesting product " + code );
+            request.setAttribute ( "sql_error_message", "Database problem: " + e.getMessage () );
         }
     }
 }

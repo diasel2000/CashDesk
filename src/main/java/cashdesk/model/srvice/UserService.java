@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * User servises (create User DAO)
+ * User servise (create User DAO)
  *
  * @author Anatolii Huzov
  * @version 1.0

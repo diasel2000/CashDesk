@@ -13,21 +13,21 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
     private static MessageDigest md;
-    private static final Logger LOGGER = Logger.getLogger(MD5.class);
+    private static final Logger LOGGER = Logger.getLogger ( MD5.class );
 
-    public static String MD5(String pass){
+    public static String MD5(String pass) {
         try {
-            md = MessageDigest.getInstance("MD5");
-            byte[] passBytes = pass.getBytes();
-            md.reset();
-            byte[] digested = md.digest(passBytes);
-            StringBuffer sb = new StringBuffer();
-            for(int i=0;i<digested.length;i++){
-                sb.append(Integer.toHexString(0xff & digested[i]));
+            md = MessageDigest.getInstance ( "MD5" );
+            byte[] passBytes = pass.getBytes ();
+            md.reset ();
+            byte[] digested = md.digest ( passBytes );
+            StringBuffer sb = new StringBuffer ();
+            for (int i = 0; i < digested.length; i++) {
+                sb.append ( Integer.toHexString ( 0xff & digested[i] ) );
             }
-            return sb.toString();
+            return sb.toString ();
         } catch (NoSuchAlgorithmException ex) {
-           LOGGER.debug ( "MD5 error" );
+            LOGGER.debug ( "MD5 error" );
         }
         return null;
 

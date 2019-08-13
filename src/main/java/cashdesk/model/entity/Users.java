@@ -3,7 +3,7 @@ package cashdesk.model.entity;
 import java.util.Objects;
 
 /**
- * User entity
+ * User entitys
  *
  * @author Anatolii Huzov
  * @version 1.0

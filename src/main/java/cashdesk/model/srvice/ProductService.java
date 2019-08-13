@@ -15,32 +15,35 @@ import java.util.List;
  * @version 1.0
  */
 public class ProductService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    DaoFactory daoFactory = DaoFactory.getInstance ();
 
     public List<Product> getAllProducts() throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            return productDao.findAll();
+        try (ProductDAO productDao = daoFactory.createProductDao ()) {
+            return productDao.findAll ();
         }
     }
+
     public Product getProductById(String id) throws SQLException {
-        try (ProductDAO dao = daoFactory.createProductDao()) {
-            return dao.findById (id);
+        try (ProductDAO dao = daoFactory.createProductDao ()) {
+            return dao.findById ( id );
         }
     }
+
     public void create(String code, String name, BigDecimal price) throws SQLException {
-        ProductDAO productDao = daoFactory.createProductDao();
-            productDao.create(name,code,price);
+        ProductDAO productDao = daoFactory.createProductDao ();
+        productDao.create ( name, code, price );
 
     }
 
     public void update(Product product) throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            productDao.update(product);
+        try (ProductDAO productDao = daoFactory.createProductDao ()) {
+            productDao.update ( product );
         }
     }
+
     public void delete(String code) throws SQLException {
-        try (ProductDAO productDao = daoFactory.createProductDao()) {
-            productDao.delete(code);
+        try (ProductDAO productDao = daoFactory.createProductDao ()) {
+            productDao.delete ( code );
         }
     }
 }

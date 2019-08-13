@@ -15,7 +15,6 @@ public class UsersCommand {
     static void setUser(HttpServletRequest request,
                         Users user) {
         HttpSession session = request.getSession ();
-        ServletContext context = request.getServletContext ();
         session.setAttribute ( "loggedIn", user );
     }
 }

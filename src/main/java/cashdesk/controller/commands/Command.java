@@ -10,9 +10,10 @@ import java.sql.SQLException;
 public interface Command {
     void execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException;
+
     default void forward(HttpServletRequest request, HttpServletResponse response, String path)
             throws ServletException, IOException {
-        request.getServletContext().getRequestDispatcher(path).forward(request, response);
+        request.getServletContext ().getRequestDispatcher ( path ).forward ( request, response );
 
     }
 }

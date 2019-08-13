@@ -18,20 +18,21 @@ public class DeleteProductCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String code = request.getParameter("dcode");
+        String code = request.getParameter ( "dcode" );
         try {
-            productService.delete(code);
-            showError ( request,response );
+            productService.delete ( code );
+            showError ( request, response );
         } catch (SQLException e) {
-            request.setAttribute("sql_error_message", "Database problem: " + e.getMessage());
-            ProductListCommand listCommand = new ProductListCommand(productService);
-            listCommand.execute(request, response);
+            request.setAttribute ( "sql_error_message", "Database problem: " + e.getMessage () );
+            ProductListCommand listCommand = new ProductListCommand ( productService );
+            listCommand.execute ( request, response );
             return;
         }
     }
+
     private void showError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        ProductListCommand listCommand = new ProductListCommand(productService);
-        listCommand.execute(request, response);
+        ProductListCommand listCommand = new ProductListCommand ( productService );
+        listCommand.execute ( request, response );
 
     }
 }

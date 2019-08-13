@@ -15,6 +15,6 @@ public interface ProductDAO extends GenericDAO<Product> {
 
     void update(Product product) throws SQLException;
 
-    void create(String productName,String code,BigDecimal price) throws SQLException;
+    void create(String productName, String code, BigDecimal price) throws SQLException;
 
 }

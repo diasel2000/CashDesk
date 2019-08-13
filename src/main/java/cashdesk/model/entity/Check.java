@@ -3,6 +3,7 @@ package cashdesk.model.entity;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+
 /**
  * Check entity
  *
@@ -61,17 +62,17 @@ public class Check {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass () != o.getClass ()) return false;
         Check check = (Check) o;
         return id == check.id &&
                 productId == check.productId &&
-                Objects.equals(priceSum, check.priceSum) &&
-                Objects.equals(products, check.products);
+                Objects.equals ( priceSum, check.priceSum ) &&
+                Objects.equals ( products, check.products );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, priceSum, products, productId);
+        return Objects.hash ( id, priceSum, products, productId );
     }
 
     @Override

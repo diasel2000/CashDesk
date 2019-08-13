@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UserListCommand implements Command {
     private UserService userService;
-    private static final Logger LOGGER = LogManager.getLogger(UserListCommand.class);
+    private static final Logger LOGGER = LogManager.getLogger ( UserListCommand.class );
 
     public UserListCommand(UserService userService) {
         this.userService = userService;
@@ -24,11 +24,11 @@ public class UserListCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Users> users = userService.getAllUsers();
-            request.setAttribute("users",users);
+            List<Users> users = userService.getAllUsers ();
+            request.setAttribute ( "users", users );
         } catch (SQLException e) {
-            LOGGER.debug("DB error while request users");
-            request.setAttribute("sql_error_message","DataBase problem"+ e.getMessage());
+            LOGGER.debug ( "DB error while request users" );
+            request.setAttribute ( "sql_error_message", "DataBase problem" + e.getMessage () );
         }
     }
 }

@@ -1,6 +1,7 @@
 package cashdesk.model.entity;
 
 import java.util.Objects;
+
 /**
  * Cashier entity
  *
@@ -49,16 +50,16 @@ public class Caisher {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass () != o.getClass ()) return false;
         Caisher caisher = (Caisher) o;
         return id == caisher.id &&
-                Objects.equals(name, caisher.name) &&
-                Objects.equals(lastName, caisher.lastName);
+                Objects.equals ( name, caisher.name ) &&
+                Objects.equals ( lastName, caisher.lastName );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName);
+        return Objects.hash ( id, name, lastName );
     }
 
     @Override

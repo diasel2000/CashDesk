@@ -16,7 +16,7 @@ public class LogoutUsersCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UsersCommand.setUser ( request, null );
-        LOGGER.info ( "logged out" );
+        LOGGER.info (  "logged out"  );
         HttpSession session = request.getSession ( false );
         if (session != null) {
             session.invalidate ();

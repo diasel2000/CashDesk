@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * DAO products
+ *
  * @author Anatolii Huzov
  * @version 1.0
  */

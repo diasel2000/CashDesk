@@ -4,6 +4,7 @@ import cashdesk.model.dao.impl.JDBCDaoFactory;
 import cashdesk.model.dao.interfaces.*;
 
 import java.sql.SQLException;
+
 /**
  * Create DaoFactory
  *
@@ -30,7 +31,7 @@ public abstract class DaoFactory {
         if (daoFactory == null) {
             synchronized (DaoFactory.class) {
                 if (daoFactory == null) {
-                    DaoFactory temp = new JDBCDaoFactory();
+                    DaoFactory temp = new JDBCDaoFactory ();
                     daoFactory = temp;
                 }
             }

@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class LoginUsersCommand implements Command {
-    private static final Logger LOGGER = LogManager.getLogger(LoginUsersCommand.class);
+    private static final Logger LOGGER = LogManager.getLogger ( LoginUsersCommand.class );
     private UserService userService;
 
     public LoginUsersCommand(UserService userService) {
@@ -29,39 +29,34 @@ public class LoginUsersCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
-        String login = request.getParameter("login");
-        String pass = request.getParameter("password");
+        String login = request.getParameter ( "login" );
+        String pass = request.getParameter ( "password" );
         String newPass = MD5.MD5 ( pass );
-        if (login == null || login.equals("")) {
-            request.setAttribute("login_error_message", "Set in the login");
-        }else
-        if (pass == null || pass.equals("")) {
-            request.setAttribute("password_error_message", "Set in the password");
-        }else
-        if (!Regex.isPasswordCorrect(pass)) {
-            request.setAttribute("password_error_message", "Invalid password");
-        }else
-        if (!Regex.isLoginCorrect(login)) {
-            request.setAttribute("login_error_message", "Invalid login");
+        if (login == null || login.equals ( "" )) {
+            request.setAttribute ( "login_error_message", "Set in the login" );
+        } else if (pass == null || pass.equals ( "" )) {
+            request.setAttribute ( "password_error_message", "Set in the password" );
+        } else if (!Regex.isPasswordCorrect ( pass )) {
+            request.setAttribute ( "password_error_message", "Invalid password" );
+        } else if (!Regex.isLoginCorrect ( login )) {
+            request.setAttribute ( "login_error_message", "Invalid login" );
         }
         try {
 
-            Optional<Users> user = userService.login(login, newPass);
-            UsersCommand.setUser(request, user.get());
-            LOGGER.info("User " + login + " logged succesfully whith role: " + user.get().getRole());
+            Optional<Users> user = userService.login ( login, newPass );
+            UsersCommand.setUser ( request, user.get () );
+            LOGGER.info ( "User " + login + " logged succesfully whith role: " + user.get ().getRole () );
             if (user.get ().getRole ().equals ( "seniorCaisher" )) {
-                response.sendRedirect ( request.getContextPath ()+"/secured/seniorcaisher/seniorcashier.jsp" );
-            }else
-            if (user.get ().getRole ().equals ( "supervisor" )) {
-                response.sendRedirect ( request.getContextPath ()+"/secured/supervisor/supervisor.jsp" );
-            }else
-            if (user.get ().getRole ().equals ( "caisher" )) {
-                response.sendRedirect ( request.getContextPath ()+"/secured/caisher/cashier.jsp" );
-            }else response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
+                response.sendRedirect ( request.getContextPath () + "/secured/seniorcaisher/seniorcashier.jsp" );
+            } else if (user.get ().getRole ().equals ( "supervisor" )) {
+                response.sendRedirect ( request.getContextPath () + "/secured/supervisor/supervisor.jsp" );
+            } else if (user.get ().getRole ().equals ( "caisher" )) {
+                response.sendRedirect ( request.getContextPath () + "/secured/caisher/cashier.jsp" );
+            } else response.sendRedirect ( request.getContextPath () + "/public/login.jsp" );
         } catch (LoginException e) {
-            request.setAttribute("log_error_message", "Wrong login o password");
-            LOGGER.info("Invalid attempt of login user: " + login);
-            response.sendRedirect (request.getContextPath ()+ "/public/login.jsp");
+            request.setAttribute ( "log_error_message", "Wrong login o password" );
+            LOGGER.info ( "Invalid attempt of login user: " + login );
+            response.sendRedirect ( request.getContextPath () + "/public/login.jsp" );
         }
     }
 }
